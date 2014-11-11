@@ -149,7 +149,7 @@ function Attack(angle : float, attackToRight : boolean)
 		{
 			rightArm.transform.eulerAngles = Vector3(transform.eulerAngles.x,transform.eulerAngles.y,(initArmAngle+angle));
 			fireSpawner.Attack(angle);
-			//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
+			Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
 		}
 	}
 }
