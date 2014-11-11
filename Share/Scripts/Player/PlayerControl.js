@@ -8,6 +8,11 @@ var character : Transform;
 //enable parameters
 var enableControl : boolean;//Enable the control from Input
 var enableAttack : boolean;//Enable Attack
+
+//set actions
+var isRunning : boolean;
+var runToRight : boolean;
+
 function Start () {
 	status = GetComponent("PlayerStatus") as PlayerStatus;//get status
 	
@@ -20,71 +25,77 @@ function Start () {
 			animator = child.gameObject.GetComponent("Animator") as Animator;//get animator
 		}
 	}
-	
-	//initialize enable parameters
+
+	//enable control
 	enableControl = true;
 	enableAttack = true;
+	
 }
 
-function FixedUpdate () {
+
+function FixedUpdate(){
 	/***
 	 **Character Control
 	***/
+	
 	if(enableControl)
 	{
-		//running
-		if(Input.GetKey(KeyCode.LeftArrow))//run towards left
-		{
-			Run(false);
-		}
-		
-		if(Input.GetKey(KeyCode.RightArrow))//run towards right
-		{
-			Run(true);
-		}
-		
-		if(!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
-		{
-			if(animator.GetBool("isRunning"))
+			//running
+			if(isRunning)
 			{
-				animator.SetBool("isRunning",false);
+				if(!runToRight)
+				{
+					Run(false);
+				}
+				
+				else if(runToRight)//run towards right
+				{
+					Run(true);
+				}
 			}
-		}
-		
-		//jumping
-		if(Input.GetKey(KeyCode.Space))
-		{
-			Jump(status.jumpHeight);
-		}
-		
-		//attacking
-		if(Input.GetKey(KeyCode.Z))
-		{
-			if(enableAttack)
+			else if(!isRunning)
 			{
-				Attack();
+				if(animator.GetBool("isRunning"))
+				{
+					animator.SetBool("isRunning",false);
+				}
 			}
-		}
-		else
-		{
-			AttackEnd();
-		}
+			
+			//jumping
+			if(Input.GetKey(KeyCode.Space))
+			{
+				Jump(status.jumpHeight);
+			}
+			
+			//attacking
+			if(Input.GetKey(KeyCode.Z))
+			{
+				if(enableAttack)
+				{
+					Attack();
+				}
+			}
+			else
+			{
+				AttackEnd();
+			}
+		
 	}
 }
 
+
 //Function RUN
-function Run(towardsRight : boolean)
+function Run(runToRight : boolean)
 {
-	if(!towardsRight)//run towards left
+	if(!runToRight)//run towards left
 	{
 		if(status.faceToRight)//change direction in character
-			{
-				character.gameObject.SendMessage("SetFaceDirection",false);
-				status.faceToRight = false;
-			}
-			
-			animator.SetBool("isRunning",true);
-			transform.position += Vector3.left * status.speed * Time.deltaTime;
+		{
+			character.gameObject.SendMessage("SetFaceDirection",false);
+			status.faceToRight = false;
+		}
+		animator.SetBool("isRunning",true);
+		transform.position += Vector3.left * status.speed * Time.deltaTime;
 	}
 	else //run towards right
 	{
