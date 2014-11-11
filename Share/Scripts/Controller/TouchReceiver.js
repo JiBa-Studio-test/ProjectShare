@@ -35,7 +35,6 @@ function OnDestroy(){
 function On_JoystickMoveEnd(move : MovingJoystick){
 	if (move.joystickName == "MoveJoystick"){
 		playerControl.isRunning = false;
-		Debug.Log("Ends");
 	}
 }
 
