@@ -16,17 +16,27 @@ function Update()
 	{
 		isAttacking=false;
 	}
+	/**
 	if(isAttacking&&timeOver)
 	{
-		Spawn();	
+		Spawn(angle);	
+	}
+	**/
+}
+function Attack(angle : float)
+{
+	if(timeOver)
+	{
+		Spawn(angle);
 	}
 }
-function Spawn()
+function Spawn(angle : float)
 {
 	timeOver=false;
-	var position: Vector2 = Vector2(transform.position.x,transform.position.y);
-	Instantiate(firePrefab,position,transform.rotation);
+	var position: Vector3 = Vector3(transform.position.x,transform.position.y,transform.position.z);
+	Instantiate(firePrefab,position,Quaternion.Euler(0,0,angle));
 	TimeWaiting();	
+	Debug.Log(position);
 }
 function TimeWaiting()
 {

@@ -1,22 +1,31 @@
 ﻿#pragma strict
 
-//To get the scripts
+//To get the scripts or objects
 var status : PlayerStatus;//all the parameters about player refer to PlayerStatus
 var animator : Animator;
 var character : Transform;
+var rightArm : GameObject;
+var fireSpawner : FireSpawner;
 
 //enable parameters
 var enableControl : boolean;//Enable the control from Input
 var enableAttack : boolean;//Enable Attack
+var initArmAngle : float;
 
 //set actions
 var isRunning : boolean;
 var runToRight : boolean;
+var isAttacking : boolean;
 
+function Awake () {
+	fireSpawner = GameObject.FindGameObjectWithTag("PlayerFireSpawner").gameObject.GetComponent("FireSpawner") as FireSpawner;
+
+}
 function Start () {
 	status = GetComponent("PlayerStatus") as PlayerStatus;//get status
+	rightArm = GameObject.FindGameObjectWithTag("RightArm");//get gun
 	
-	//set animator and character
+	//get animator and character
 	for(var child : Transform in transform as Transform)
 	{
 		if(child.tag == "Character")
@@ -24,12 +33,18 @@ function Start () {
 			character = child;//get character
 			animator = child.gameObject.GetComponent("Animator") as Animator;//get animator
 		}
+		/**
+		if(child.tag == "playerFireSpawner")
+		{
+			fireSpawner = child.gameObject.GetComponent("FireSpawner") as FireSpawner;//get fire spawner
+		}
+		**/
 	}
 
 	//enable control
 	enableControl = true;
 	enableAttack = true;
-	
+	initArmAngle = rightArm.transform.rotation.eulerAngles.z;
 }
 
 
@@ -68,6 +83,7 @@ function FixedUpdate(){
 			}
 			
 			//attacking
+			/**
 			if(Input.GetKey(KeyCode.Z))
 			{
 				if(enableAttack)
@@ -79,7 +95,7 @@ function FixedUpdate(){
 			{
 				AttackEnd();
 			}
-		
+			**/
 	}
 }
 
@@ -121,11 +137,20 @@ function Jump(height : float)
 }
 
 //Function Attack
-function Attack()
+function Attack(angle : float, attackToRight : boolean)
 {
-	if(animator.GetBool("isAttacking") == false)
+	if(enableAttack)
 	{
-		animator.SetBool("isAttacking",true);
+		if(animator.GetBool("isAttacking") == false)
+		{
+			animator.SetBool("isAttacking",true);
+		}
+		if(-45.0<angle && angle<45.0)//set the effective angle
+		{
+			rightArm.transform.eulerAngles = Vector3(transform.eulerAngles.x,transform.eulerAngles.y,(initArmAngle+angle));
+			fireSpawner.Attack(angle);
+			//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
+		}
 	}
 }
 function AttackEnd()

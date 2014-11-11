@@ -39,6 +39,7 @@ function On_JoystickMoveEnd(move : MovingJoystick){
 }
 
 function On_JoystickMove(move : MovingJoystick){
+	//Moving
 	if (move.joystickName == "MoveJoystick"){
 		playerControl.isRunning = true;
 		if(move.joystickAxis.x>0){
@@ -47,6 +48,12 @@ function On_JoystickMove(move : MovingJoystick){
 		else if(move.joystickAxis.x<0){
 			playerControl.runToRight = false;
 		}
+	}
+	//Attacking
+	if (move.joystickName == "AttackJoystick"){
+		var angle = Mathf.Rad2Deg*Mathf.Atan(move.joystickAxis.y/move.joystickAxis.x);
+		var attackToRight = move.joystickAxis.x>0?true:false;
+		playerControl.Attack(angle,attackToRight);
 	}
 }
 
