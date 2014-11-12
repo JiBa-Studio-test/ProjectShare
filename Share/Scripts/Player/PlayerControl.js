@@ -147,7 +147,7 @@ function Attack(angle : float, attackToRight : boolean)
 		}
 		if(-45.0<angle && angle<45.0)//set the effective angle
 		{
-			rightArm.transform.eulerAngles = Vector3(transform.eulerAngles.x,transform.eulerAngles.y,(initArmAngle+angle));
+			rightArm.transform.localRotation = Quaternion.Euler(0,0,(initArmAngle+angle));
 			fireSpawner.Attack(angle);
 			Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
 		}
