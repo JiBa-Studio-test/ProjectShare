@@ -54,6 +54,7 @@ function On_JoystickMove(move : MovingJoystick){
 	}
 	//Attacking
 	if (move.joystickName == "AttackJoystick"){
+		//the interval of angle is always from -90 to 90
 		var angle = Mathf.Rad2Deg*Mathf.Atan(move.joystickAxis.y/move.joystickAxis.x);
 		var attackToRight = move.joystickAxis.x>0?true:false;
 		playerControl.Attack(angle,attackToRight);

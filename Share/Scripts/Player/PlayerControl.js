@@ -11,6 +11,7 @@ var fireSpawner : FireSpawner;
 var enableControl : boolean;//Enable the control from Input
 var enableAttack : boolean;//Enable Attack
 var initArmAngle : float;
+var shootingAngle : float;//from 0 to 90
 
 //set actions
 var isRunning : boolean;
@@ -19,7 +20,6 @@ var isAttacking : boolean;
 
 function Awake () {
 	fireSpawner = GameObject.FindGameObjectWithTag("PlayerFireSpawner").gameObject.GetComponent("FireSpawner") as FireSpawner;
-
 }
 function Start () {
 	status = GetComponent("PlayerStatus") as PlayerStatus;//get status
@@ -45,6 +45,12 @@ function Start () {
 	enableControl = true;
 	enableAttack = true;
 	initArmAngle = rightArm.transform.rotation.eulerAngles.z;
+	
+	//initialize parameters
+	if(shootingAngle == 0.0)
+	{
+		shootingAngle = 45.0;
+	}
 }
 
 
@@ -149,24 +155,34 @@ function Attack(angle : float, attackToRight : boolean)
 		{
 			character.gameObject.SendMessage("SetFaceDirection",true);
 			status.faceToRight = true;
-			if(-45.0<angle && angle<45.0)//set the effective angle
+			if(angle>shootingAngle)//set the effective angle
 			{
-				rightArm.transform.rotation = Quaternion.Euler(0,0,angle);
-				fireSpawner.Attack(angle);
-				//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
+				angle = shootingAngle;
 			}
+			else if(angle<-shootingAngle)
+			{
+				angle = -shootingAngle;
+			}
+			rightArm.transform.rotation = Quaternion.Euler(0,0,angle);
+			fireSpawner.Attack(angle);
+			//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
 		}
 		else
 		{
 			angle = -angle;
 			character.gameObject.SendMessage("SetFaceDirection",false);
 			status.faceToRight = false;
-			if(-45.0<angle && angle<45.0)//set the effective angle
+			if(angle>shootingAngle)//set the effective angle
 			{
-				rightArm.transform.rotation = Quaternion.Euler(0,0,angle);
-				fireSpawner.Attack(180-angle);
-				//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
+				angle = shootingAngle;
 			}
+			else if(angle<-shootingAngle)
+			{
+				angle = -shootingAngle;
+			}
+			rightArm.transform.rotation = Quaternion.Euler(0,0,angle);
+			fireSpawner.Attack(180-angle);
+			//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
 		}
 		
 	}
