@@ -16,6 +16,9 @@ function Start () {
 	if(playerControl == null){
 		playerControl = GetComponent(PlayerControl) as PlayerControl;
 	}
+	if(moveEffectiveRadius == 0){
+		moveEffectiveRadius=0.2;
+	}
 }
 // Subscribe to events  
 function OnEnable(){  

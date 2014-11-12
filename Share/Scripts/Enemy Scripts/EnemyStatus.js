@@ -11,7 +11,7 @@ var bonus:int;
 function Awake()
 {
 	//playerStatus=GameObject.FindGameObjectWithTag("Player").GetComponent("PlayerStatues");
-	HP=10;
+	//HP=10;
 	//ATK=5;
 	//DEF=0;
 	if(speed == 0)

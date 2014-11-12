@@ -2,6 +2,13 @@
 var spawn: boolean=true;
 var waitTime: float;
 
+function Start()
+{
+	if(waitTime == 0){
+		waitTime = 2;
+	}
+}
+
 function FixedUpdate()
 {
 	if(spawn)
@@ -26,7 +33,7 @@ function SetSpawnWait()
 }
 function WaitTime()
 {
-	waitTime=2/EnemyManagement.enemyManagement.spawnRate;
+	waitTime=waitTime/EnemyManagement.enemyManagement.spawnRate;
 }
 
 
