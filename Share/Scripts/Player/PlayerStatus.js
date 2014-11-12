@@ -7,6 +7,7 @@ var speed : float;
 var jumpHeight : float;
 var faceToRight : boolean;
 var weapon : int;
+var maxHP:int;
 
 //animation parameters
 var isRunning : boolean;
@@ -22,7 +23,8 @@ function Start () {
 	
 	
 	//initialize basic parameters
-	HP = 10;
+	maxHP=100;
+	HP = 100;
 	DEF = 0;
 	faceToRight = true;
 	weapon = 1;

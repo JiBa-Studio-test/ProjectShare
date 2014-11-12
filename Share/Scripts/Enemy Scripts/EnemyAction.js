@@ -90,6 +90,7 @@ function DeathDetection()
 	if(enemyStatus.HP<=0)
 	{
 		movable=false;
+		
 		//activate the death animation here
 		//this method(BeKilled) could be invoked at the end of animation
 		enemyStatus.isDead=true;

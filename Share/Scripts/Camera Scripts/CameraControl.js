@@ -22,10 +22,8 @@ function FixedUpdate()
 	if(isFollowing)
 	{
 		if(Mathf.Abs(x-player.position.x)>margin.x)
-		{
-			
-				x=Mathf.Lerp(x,player.position.x,smoothing.x*Time.deltaTime);
-			
+		{	
+			x=Mathf.Lerp(x,player.position.x,smoothing.x*Time.deltaTime);	
 		}
 		if(Mathf.Abs(y-player.position.y)>margin.y)
 		{
