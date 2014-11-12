@@ -131,7 +131,6 @@ function Run(runToRight : boolean)
 		animator.SetFloat("speedRate",speedRate);
 		transform.position += Vector3.right * status.speed *speedRate* Time.deltaTime;
 		//Debug.Log(animator.GetCurrentAnimatorStateInfo(0).nameHash == animator.StringToHash("Base Layer.run"));
-		Debug.Log(animator.GetCurrentAnimationClipState(0));
 	}
 }
 
