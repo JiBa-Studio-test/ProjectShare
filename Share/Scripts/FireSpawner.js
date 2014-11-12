@@ -1,10 +1,12 @@
 ﻿var firePrefab: GameObject;
+var fireScript: Fires;
 var isAttacking: boolean;
 var timeOver: boolean;
 var frequency: float;
 function Start()
 {
 	timeOver=true;
+	
 }
 function Update()
 {
@@ -33,10 +35,14 @@ function Attack(angle : float)
 function Spawn(angle : float)
 {
 	timeOver=false;
+	//send angle to set the routine of fire
+	
 	var position: Vector3 = Vector3(transform.position.x,transform.position.y,transform.position.z);
-	Instantiate(firePrefab,position,Quaternion.Euler(0,0,angle));
+	var fireInstance : GameObject = Instantiate(firePrefab,position,Quaternion.Euler(0,0,angle));
+	fireInstance.GetComponent(Fires).angle=angle;
+	
 	TimeWaiting();	
-	Debug.Log(position);
+	//Debug.Log(position);
 }
 function TimeWaiting()
 {
