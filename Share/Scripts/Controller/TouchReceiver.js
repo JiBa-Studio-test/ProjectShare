@@ -4,6 +4,8 @@ var isRunning : boolean;
 var isAttacking : boolean;
 var runToRight : boolean;
 var playerControl : PlayerControl;
+var moveEffectiveRadius : float;//set the effective range of joystick to move
+var attackEffectiveRadius : float;
 
 function Awake () {
 	isRunning = false;
@@ -44,12 +46,19 @@ function On_JoystickMoveEnd(move : MovingJoystick){
 function On_JoystickMove(move : MovingJoystick){
 	//Moving
 	if (move.joystickName == "MoveJoystick"){
-		playerControl.isRunning = true;
-		if(move.joystickAxis.x>0){
+		
+		if(move.joystickAxis.x>moveEffectiveRadius){
+			playerControl.isRunning = true;
 			playerControl.runToRight = true;
+			playerControl.speedRate = move.joystickAxis.x;
 		}
-		else if(move.joystickAxis.x<0){
+		else if(move.joystickAxis.x<-moveEffectiveRadius){
+			playerControl.isRunning = true;
 			playerControl.runToRight = false;
+			playerControl.speedRate = -move.joystickAxis.x;
+		}
+		else{
+			isRunning=false;
 		}
 	}
 	//Attacking
