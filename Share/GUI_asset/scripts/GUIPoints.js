@@ -9,7 +9,7 @@ function Start()
 	GetComponent(UILabel);
 	label.text="Points: "+"0";
 }
-function Update() 
+function FixedUpdate() 
 {
 		
 		label.text="Points: "+GameManagement.points.ToString();

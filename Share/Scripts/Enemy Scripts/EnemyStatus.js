@@ -6,6 +6,7 @@ var faceToRight:boolean;
 var isDead:boolean;
 var isJumping:boolean;
 var isAttacking:boolean;
+var bonus:int;
 //var playerStatus: PlayerStatues;
 function Awake()
 {
