@@ -103,7 +103,7 @@ function FixedUpdate(){
 //Function RUN
 function Run(runToRight : boolean)
 {
-	if(!runToRight)//run towards left
+	if(!runToRight && !isAttacking)//run towards left && not attacking
 	{
 		if(status.faceToRight)//change direction in character
 		{
@@ -113,7 +113,7 @@ function Run(runToRight : boolean)
 		animator.SetBool("isRunning",true);
 		transform.position += Vector3.left * status.speed * Time.deltaTime;
 	}
-	else //run towards right
+	else if(runToRight && !isAttacking)//run towards right && not attacking
 	{
 		if(!status.faceToRight)//change direction in character
 		{
@@ -145,12 +145,30 @@ function Attack(angle : float, attackToRight : boolean)
 		{
 			animator.SetBool("isAttacking",true);
 		}
-		if(-45.0<angle && angle<45.0)//set the effective angle
+		if(attackToRight)
 		{
-			rightArm.transform.localRotation = Quaternion.Euler(0,0,(initArmAngle+angle));
-			fireSpawner.Attack(angle);
-			//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
+			character.gameObject.SendMessage("SetFaceDirection",true);
+			status.faceToRight = true;
+			if(-45.0<angle && angle<45.0)//set the effective angle
+			{
+				rightArm.transform.rotation = Quaternion.Euler(0,0,angle);
+				fireSpawner.Attack(angle);
+				//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
+			}
 		}
+		else
+		{
+			angle = -angle;
+			character.gameObject.SendMessage("SetFaceDirection",false);
+			status.faceToRight = false;
+			if(-45.0<angle && angle<45.0)//set the effective angle
+			{
+				rightArm.transform.rotation = Quaternion.Euler(0,0,angle);
+				fireSpawner.Attack(180-angle);
+				//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
+			}
+		}
+		
 	}
 }
 function AttackEnd()
@@ -159,6 +177,7 @@ function AttackEnd()
 	{
 		animator.SetBool("isAttacking",false);
 	}
+	rightArm.transform.rotation = Quaternion.Euler(0,0,0);
 }
 //When collision occurs
 function OnCollisionEnter2D(col : Collision2D)
