@@ -149,7 +149,7 @@ function Attack(angle : float, attackToRight : boolean)
 		{
 			rightArm.transform.localRotation = Quaternion.Euler(0,0,(initArmAngle+angle));
 			fireSpawner.Attack(angle);
-			Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
+			//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
 		}
 	}
 }

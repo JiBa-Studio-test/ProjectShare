@@ -36,6 +36,9 @@ function On_JoystickMoveEnd(move : MovingJoystick){
 	if (move.joystickName == "MoveJoystick"){
 		playerControl.isRunning = false;
 	}
+	if (move.joystickName == "AttackJoystick"){
+		playerControl.AttackEnd();
+	}
 }
 
 function On_JoystickMove(move : MovingJoystick){

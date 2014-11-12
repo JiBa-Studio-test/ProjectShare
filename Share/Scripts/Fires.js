@@ -1,9 +1,12 @@
+
+
 var speed: float=10;
 var ATK:int;
 var faceToRight: boolean;
 var playerStatus: PlayerStatus;
 var damageText:GameObject;
 var explodingParticle:GameObject;
+var angle: float;
 function Start()
 {
 	playerStatus=GameObject.FindGameObjectWithTag("Player").GetComponent("PlayerStatus");
@@ -57,11 +60,14 @@ function FireMove()
 {
 	if(faceToRight)
 	{
-	transform.position+=Vector3.right*speed*Time.deltaTime;
-	
+	transform.position+=Vector3.right*speed*Mathf.Cos(Mathf.Deg2Rad*angle)*Time.deltaTime;
+	transform.position+=Vector3.up*speed*Mathf.Sin(Mathf.Deg2Rad*angle)*Time.deltaTime;
+	//Debug.Log(Mathf.Cos(Mathf.Rad2Deg*angle));
+	//Debug.Log(angle);
 	}
 	else
 	{
-	transform.position+=Vector3.left*speed*Time.deltaTime;
+	transform.position+=Vector3.left*speed*Mathf.Cos(Mathf.Deg2Rad*angle)*Time.deltaTime;
+	transform.position+=Vector3.up*speed*Mathf.Sin(Mathf.Deg2Rad*angle)*Time.deltaTime;
 	}
 }
