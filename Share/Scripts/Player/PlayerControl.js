@@ -10,8 +10,9 @@ var animatorState : AnimatorStateInfo;
 //enable parameters
 var enableControl : boolean;//Enable the control from Input
 var enableAttack : boolean;//Enable Attack
-var initArmAngle : float;
-var shootingAngle : float;//from 0 to 90
+var initArmAngle : float;//the required angle to adjust gun to horizon
+//var angle : float;////the angle of arm refers to horizon ,from -90 to 90
+var effShootingAngle : float;
 var speedRate : float;
 //set actions
 var isRunning : boolean;
@@ -19,6 +20,7 @@ var runToRight : boolean;
 var isAttacking : boolean;
 
 function Awake () {
+	initArmAngle = 19.0;//the initial difference of angle between arm and horizon
 	fireSpawner = GameObject.FindGameObjectWithTag("PlayerFireSpawner").gameObject.GetComponent("FireSpawner") as FireSpawner;
 }
 function Start () {
@@ -44,12 +46,11 @@ function Start () {
 	//enable control
 	enableControl = true;
 	enableAttack = true;
-	initArmAngle = rightArm.transform.rotation.eulerAngles.z;
 	
 	//initialize parameters
-	if(shootingAngle == 0.0)
+	if(effShootingAngle == 0.0)
 	{
-		shootingAngle = 45.0;
+		effShootingAngle = 45.0;
 	}
 }
 
@@ -134,6 +135,7 @@ function Run(runToRight : boolean)
 	}
 }
 
+
 //Function JUMP
 function Jump(height : float)
 {
@@ -144,8 +146,13 @@ function Jump(height : float)
 			}
 }
 
+function ArmRotate(rotateAngle : float)
+{
+	var angleToHorizon=initArmAngle+rotateAngle;//the angle of arm refer to horizon
+	rightArm.transform.localRotation = Quaternion.Euler(0,0,angleToHorizon);
+}
 //Function Attack
-function Attack(angle : float, attackToRight : boolean)
+function Attack(angle : float)
 {
 	if(enableAttack)
 	{
@@ -154,42 +161,46 @@ function Attack(angle : float, attackToRight : boolean)
 			animator.SetBool("isAttacking",true);
 			isAttacking = true;
 		}
-		if(attackToRight)
+		if(status.faceToRight)
 		{
+			/**
 			if(!status.faceToRight)
 			{
 				character.gameObject.SendMessage("SetFaceDirection",true);
 				status.faceToRight = true;
 			}
-			if(angle>shootingAngle)//set the effective angle
+			**/
+			if(angle>effShootingAngle)//set the effective angle
 			{
-				angle = shootingAngle;
+				angle = effShootingAngle;
 			}
-			else if(angle<-shootingAngle)
+			else if(angle<-effShootingAngle)
 			{
-				angle = -shootingAngle;
+				angle = -effShootingAngle;
 			}
-			rightArm.transform.rotation = Quaternion.Euler(0,0,angle);
+			
 			fireSpawner.Attack(angle);
 			//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
 		}
 		else
 		{
 			angle = -angle;
+			/**
 			if(status.faceToRight)
 			{
 				character.gameObject.SendMessage("SetFaceDirection",false);
 				status.faceToRight = false;
 			}
-			if(angle>shootingAngle)//set the effective angle
+			**/
+			if(angle>effShootingAngle)//set the effective angle
 			{
-				angle = shootingAngle;
+				angle = effShootingAngle;
 			}
-			else if(angle<-shootingAngle)
+			else if(angle<-effShootingAngle)
 			{
-				angle = -shootingAngle;
+				angle = -effShootingAngle;
 			}
-			rightArm.transform.rotation = Quaternion.Euler(0,0,angle);
+			//rightArm.transform.rotation = Quaternion.Euler(0,0,angle);
 			fireSpawner.Attack(180-angle);
 			//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
 		}
