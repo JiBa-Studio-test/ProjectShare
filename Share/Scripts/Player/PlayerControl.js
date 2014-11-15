@@ -7,24 +7,39 @@ var character : Transform;
 var rightArm : GameObject;
 var fireSpawner : FireSpawner;
 var animatorState : AnimatorStateInfo;
+var spriteRenderer: SpriteRenderer;
 //enable parameters
 var enableControl : boolean;//Enable the control from Input
 var enableAttack : boolean;//Enable Attack
 var initArmAngle : float;
 var shootingAngle : float;//from 0 to 90
 var speedRate : float;
+
 //set actions
 var isRunning : boolean;
 var runToRight : boolean;
 var isAttacking : boolean;
+var pushingForce:float;
+var damageBlock:boolean;
+var noDamageTime:float;
+var dumbTime:float;
 
 function Awake () {
 	fireSpawner = GameObject.FindGameObjectWithTag("PlayerFireSpawner").gameObject.GetComponent("FireSpawner") as FireSpawner;
+	//spriteRenderer=GetComponentInChildren(SpriteRenderer);
 }
 function Start () {
 	status = GetComponent("PlayerStatus") as PlayerStatus;//get status
 	rightArm = GameObject.FindGameObjectWithTag("RightArm");//get gun
-	
+	damageBlock=false;
+	if(noDamageTime==1)
+	{
+		noDamageTime=1;
+	}
+	if(dumbTime==0.2)
+	{
+		dumbTime=0.2;
+	}
 	//get animator and character
 	for(var child : Transform in transform as Transform)
 	{
@@ -58,7 +73,6 @@ function FixedUpdate(){
 	/***
 	 **Character Control
 	***/
-	
 	if(enableControl)
 	{
 			//running
@@ -171,7 +185,6 @@ function Attack(angle : float, attackToRight : boolean)
 			}
 			rightArm.transform.rotation = Quaternion.Euler(0,0,angle);
 			fireSpawner.Attack(angle);
-			//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
 		}
 		else
 		{
@@ -212,4 +225,59 @@ function OnCollisionEnter2D(col : Collision2D)
 	{
 		animator.SetBool("isJumping", false);
 	}
+}
+
+function PushPlayer(vector:Vector2)
+{
+	rigidbody2D.AddForce(vector*pushingForce);
+}
+
+function Damage(ATK:int,vector:Vector2)
+{
+	if(!damageBlock)
+	{
+		damageBlock=true;
+		status.HP-=ATK;
+		if(status.HP<=0)
+		{
+			status.HP=0;
+		}
+		PushPlayer(vector*pushingForce);
+		Stop();
+		TimeForNoDamage();
+	}
+}
+function Stop()
+{
+	enableControl=false;
+	animator.SetBool("getDamaged",true);
+	StopTime(dumbTime);
+}
+
+function StopTime(time:float)
+{
+	yield WaitForSeconds(time);
+	animator.SetBool("getDamaged",false);
+	enableControl=true;
+	//inactivative the damaged animation here;
+}
+function TimeForNoDamage()
+{
+	
+	var startingTime=Time.time;
+	do
+	{
+		for(var i:float=1;i<=5;i++)
+		{	
+			yield WaitForSeconds(0);
+			spriteRenderer.color=Color.Lerp(Color.white,Color.red,i/5.0);
+		}
+		for(var p:float=1;p<=5;p++)
+		{
+			yield WaitForSeconds(0);
+			spriteRenderer.color=Color.Lerp(Color.red,Color.white,p/5.0);
+		}
+	}
+	while((Time.time-startingTime)<noDamageTime);
+	damageBlock=false;
 }
