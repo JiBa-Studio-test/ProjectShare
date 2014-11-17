@@ -23,12 +23,6 @@ function SetGravity()
 
 function SetDirection()
 {
-	/*var count:int=0;
-	if(!enemyStatus.faceToRight&&count==0)
-	{
-		velocity.x=-velocity.x;
-		count++;
-	}*/
 	var angle=Mathf.Rad2Deg*Mathf.Atan(velocity.y/velocity.x);
 	transform.rotation=Quaternion.Euler(0,0,angle);
 }

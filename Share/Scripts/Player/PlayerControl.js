@@ -21,6 +21,7 @@ var isRunning : boolean;
 var runToRight : boolean;
 var isAttacking : boolean;
 var pushingForce:float;
+var vector:Vector2;
 var damageBlock:boolean;
 var noDamageTime:float;
 var dumbTime:float;
@@ -243,7 +244,7 @@ function PushPlayer(vector:Vector2)
 	rigidbody2D.AddForce(vector*pushingForce);
 }
 
-function Damage(ATK:int,vector:Vector2)
+function Damage(ATK:int)
 {
 	if(!damageBlock)
 	{
