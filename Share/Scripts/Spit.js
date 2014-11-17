@@ -1,8 +1,14 @@
-﻿var velocity:Vector2;
+var velocity:Vector2;
 var gravity:float;
+var enemyStatus: EnemyStatus;
+var faceToRight: boolean;
+function Start()
+{
+}
 
 function FixedUpdate()
 {
+	SetDirection();
 	Move(velocity*Time.deltaTime);
 	SetGravity();
 }
@@ -15,10 +21,16 @@ function SetGravity()
 	velocity.y-=gravity*Time.deltaTime;
 }
 
-function SetDirection(vector:Vector2)
+function SetDirection()
 {
-	velocity.x=velocity.x*Mathf.Sign(vector.x);
-	velocity.y=velocity.y*Mathf.Sign(vector.y);
+	/*var count:int=0;
+	if(!enemyStatus.faceToRight&&count==0)
+	{
+		velocity.x=-velocity.x;
+		count++;
+	}*/
+	var angle=Mathf.Rad2Deg*Mathf.Atan(velocity.y/velocity.x);
+	transform.rotation=Quaternion.Euler(0,0,angle);
 }
 
 function OnTriggerEnter2D(other:Collider2D)

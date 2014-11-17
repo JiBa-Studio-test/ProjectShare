@@ -58,11 +58,13 @@ function FollowMove()//following movement for enemy
 	if(distance<-offset)
 	{
 		isRight=true;
+		enemyStatus.faceToRight=false;
 		GoLeft();
 	}
 	if(distance>offset)
 	{
 		isRight=false;
+		enemyStatus.faceToRight=true;
 		GoRight();
 	}
 	if(distance>=-offset&&distance<=offset)

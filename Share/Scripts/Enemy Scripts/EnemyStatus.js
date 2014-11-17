@@ -16,6 +16,6 @@ function Awake()
 	//DEF=0;
 	if(speed == 0)
 		speed=3;
-	//faceToRight=playerStatus.faceToRight;
+	faceToRight=true;
 	isDead=false;
 }
