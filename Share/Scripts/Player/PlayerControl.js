@@ -12,8 +12,8 @@ var spriteRenderer: SpriteRenderer;
 var enableControl : boolean;//Enable the control from Input
 var enableAttack : boolean;//Enable Attack
 var initArmAngle : float;//the required angle to adjust gun to horizon
-//var angle : float;////the angle of arm refers to horizon ,from -90 to 90
-var effShootingAngle : float;
+var angle : float;//the angle to fire
+var effShootingAngle : float;//maximum angle allowed to rotate the arm
 var speedRate : float;
 
 //set actions
@@ -96,12 +96,13 @@ function FixedUpdate(){
 					animator.SetBool("isRunning",false);
 				}
 			}
-			
+			/**
 			//jumping
 			if(Input.GetKey(KeyCode.Space))
 			{
 				Jump(status.jumpHeight);
 			}
+			**/
 			
 			//attacking
 			/**
@@ -126,7 +127,7 @@ function Run(runToRight : boolean)
 {
 	if(!runToRight)//run towards left
 	{
-		if(status.faceToRight && !isAttacking)//change direction in character when not attacking
+		if(status.faceToRight)//change direction in character
 		{
 			character.gameObject.SendMessage("SetFaceDirection",false);
 			status.faceToRight = false;
@@ -137,7 +138,7 @@ function Run(runToRight : boolean)
 	}
 	else if(runToRight)//run towards right && not attacking
 	{
-		if(!status.faceToRight && !isAttacking)//change direction in character when not attacking
+		if(!status.faceToRight)//change direction in character
 		{
 			character.gameObject.SendMessage("SetFaceDirection",true);
 			status.faceToRight = true;
@@ -151,25 +152,43 @@ function Run(runToRight : boolean)
 
 
 //Function JUMP
-function Jump(height : float)
+function Jump()
 {
 	if(animator.GetBool("isJumping") == false)
 			{
-				rigidbody2D.AddForce(Vector3.up * height);
+				rigidbody2D.AddForce(Vector3.up * status.jumpHeight);
 				animator.SetBool("isJumping", true);
 			}
 }
 
 function ArmRotate(rotateAngle : float)
 {
+	if(rotateAngle>=effShootingAngle){
+		rotateAngle = effShootingAngle;
+	}
+	else if(rotateAngle<=-effShootingAngle){
+		rotateAngle = -effShootingAngle;
+	}
+	angle = rotateAngle;
 	var angleToHorizon=initArmAngle+rotateAngle;//the angle of arm refer to horizon
-	rightArm.transform.localRotation = Quaternion.Euler(0,0,angleToHorizon);
+	rightArm.transform.rotation = Quaternion.Euler(0,0,angleToHorizon);
+}
+
+function ArmDown()//invoked when button and joystick released(idle)
+{
+	rightArm.transform.rotation = Quaternion.Euler(0,0,0);
+	angle=0;
 }
 //Function Attack
-function Attack(angle : float)
+function Attack()
 {
+	
 	if(enableAttack)
 	{
+		if(angle == 0){
+			ArmRotate(0);
+		}
+		
 		if(animator.GetBool("isAttacking") == false)
 		{
 			animator.SetBool("isAttacking",true);
@@ -177,45 +196,11 @@ function Attack(angle : float)
 		}
 		if(status.faceToRight)
 		{
-			/**
-			if(!status.faceToRight)
-			{
-				character.gameObject.SendMessage("SetFaceDirection",true);
-				status.faceToRight = true;
-			}
-			**/
-			if(angle>effShootingAngle)//set the effective angle
-			{
-				angle = effShootingAngle;
-			}
-			else if(angle<-effShootingAngle)
-			{
-				angle = -effShootingAngle;
-			}
-			
 			fireSpawner.Attack(angle);
 		}
 		else
 		{
-			angle = -angle;
-			/**
-			if(status.faceToRight)
-			{
-				character.gameObject.SendMessage("SetFaceDirection",false);
-				status.faceToRight = false;
-			}
-			**/
-			if(angle>effShootingAngle)//set the effective angle
-			{
-				angle = effShootingAngle;
-			}
-			else if(angle<-effShootingAngle)
-			{
-				angle = -effShootingAngle;
-			}
-			//rightArm.transform.rotation = Quaternion.Euler(0,0,angle);
 			fireSpawner.Attack(180-angle);
-			//Debug.Log("angle:"+angle+" arm:"+rightArm.transform.eulerAngles);
 		}
 		
 	}
@@ -227,7 +212,7 @@ function AttackEnd()
 		animator.SetBool("isAttacking",false);
 		isAttacking = false;
 	}
-	rightArm.transform.rotation = Quaternion.Euler(0,0,0);
+	ArmDown();
 }
 //When collision occurs
 function OnCollisionEnter2D(col : Collision2D)
