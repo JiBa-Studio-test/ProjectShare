@@ -2,15 +2,17 @@
 var timeOver: boolean;
 var frequency: float;
 var enemyStatus: EnemyStatus;
+var _AI_monster2:AI_monster2;
 function Start()
 {
 	timeOver=true;
 	enemyStatus=transform.parent.GetComponent(EnemyStatus);
+	_AI_monster2=transform.parent.GetComponent(AI_monster2);
 	
 }
 function Update()
 {
-	if(timeOver)
+	if(timeOver&&!_AI_monster2.attackLock)
 	{
 		Spawn();	
 	}
