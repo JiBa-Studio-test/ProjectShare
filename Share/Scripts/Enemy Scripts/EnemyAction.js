@@ -35,8 +35,9 @@ function FixedUpdate ()
 		}
 		else
 		{
-			animator.SetBool("isRunning",false);
+			//animator.SetBool("isRunning",false);
 			//invoke the random idle path here when player is undetected
+			gameObject.SendMessage("RandomMove",SendMessageOptions.DontRequireReceiver);
 		}
 	}
 	//go dead if HP<=0

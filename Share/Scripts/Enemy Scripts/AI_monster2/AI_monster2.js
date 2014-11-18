@@ -7,9 +7,10 @@ var attackLock:boolean;
 
 //to control random move
 var ifFinished:boolean=true;
-var leftOrRight:boolean=true;
+var leftOrRightOrStop:int;
 var toLeft:int;
 var toRight:int;
+var toStop:int;
 var speedForRandomMove:float;
 //
 
@@ -42,6 +43,7 @@ function AIActionToPlayer()//following movement for enemy
 	}
 	if(distance>=-disToPlayer&&distance<=disToPlayer)
 	{
+		enemyAction.animator.SetBool("isRunning",false);
 		attackLock=false;
 		if(distance<=0)
 		{
@@ -55,7 +57,7 @@ function AIActionToPlayer()//following movement for enemy
 			enemyAction.isRight=false;
 			enemyAction.enemyStatus.faceToRight=true;	
 		}
-		RandomMove();
+		
 	}
 }
 function GoLeft()
@@ -71,31 +73,44 @@ function GoRight()
 
 function RandomMove()
 {
+	enemyAction.animator.SetBool("isRunning",true);
 	if(ifFinished)
 	{
-		toLeft=Random.Range(30,40);
-		toRight=Random.Range(30,40);
+		toLeft=Random.Range(100,130);
+		toRight=Random.Range(100,130);
+		toStop=Random.Range(50,70);
+		leftOrRightOrStop=Random.Range(1,6);
 		ifFinished=false;
 	}
 	
-	if(leftOrRight)
+	if(leftOrRightOrStop==1||leftOrRightOrStop==4)
 	{
 		toLeft--;
+		transform.localScale.x=-ScaleX;
 		transform.position+=Vector3.left*speedForRandomMove*Time.deltaTime;
 		if(toLeft==0)
 		{
 			ifFinished=true;
-			leftOrRight=false;
 		}
 	}
-	if(!leftOrRight)
+	if(leftOrRightOrStop==2||leftOrRightOrStop==5)
 	{
 		toRight--;
+		transform.localScale.x=ScaleX;
 		transform.position+=Vector3.right*speedForRandomMove*Time.deltaTime;	
 		if(toRight==0)
 		{
 			ifFinished=true;
-			leftOrRight=true;
+		}
+	}
+	if(leftOrRightOrStop==3)
+	{
+		enemyAction.animator.SetBool("isRunning",false);
+		toStop--;
+		transform.position+=Vector3.zero*speedForRandomMove*Time.deltaTime;	
+		if(toStop==0)
+		{
+			ifFinished=true;
 		}
 	}
 }

@@ -2,6 +2,15 @@
 var player:GameObject;
 var disToPlayer:float;
 var ScaleX:float;
+
+//to control random move
+var ifFinished:boolean=true;
+var leftOrRightOrStop:int;
+var toLeft:int;
+var toRight:int;
+var toStop:int;
+var speedForRandomMove:float;
+//
 function Start () 
 {
 	enemyAction=GetComponent(EnemyAction);
@@ -48,4 +57,50 @@ function GoRight()
 	transform.localScale.x=ScaleX;
 	transform.position+=Vector3.right*enemyAction.speed*Time.deltaTime;
 }
+
+function RandomMove()
+{
+	enemyAction.animator.SetBool("isRunning",true);
+	if(ifFinished)
+	{
+		toLeft=Random.Range(100,130);
+		toRight=Random.Range(100,130);
+		toStop=Random.Range(50,70);
+		leftOrRightOrStop=Random.Range(1,6);
+		ifFinished=false;
+	}
+	
+	if(leftOrRightOrStop==1||leftOrRightOrStop==4)
+	{
+		toLeft--;
+		transform.localScale.x=-ScaleX;
+		transform.position+=Vector3.left*speedForRandomMove*Time.deltaTime;
+		if(toLeft==0)
+		{
+			ifFinished=true;
+		}
+	}
+	if(leftOrRightOrStop==2||leftOrRightOrStop==5)
+	{
+		toRight--;
+		transform.localScale.x=ScaleX;
+		transform.position+=Vector3.right*speedForRandomMove*Time.deltaTime;	
+		if(toRight==0)
+		{
+			ifFinished=true;
+		}
+	}
+	if(leftOrRightOrStop==3)
+	{
+		enemyAction.animator.SetBool("isRunning",false);
+		toStop--;
+		transform.position+=Vector3.zero*speedForRandomMove*Time.deltaTime;	
+		if(toStop==0)
+		{
+			ifFinished=true;
+		}
+	}
+}
+
+
 
