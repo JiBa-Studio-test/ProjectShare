@@ -17,9 +17,6 @@ function Start () {
 	if(playerControl == null){
 		playerControl = GetComponent(PlayerControl) as PlayerControl;
 	}
-	if(moveEffectiveRadius == 0){
-		moveEffectiveRadius=0.2;
-	}
 	if(moveJoystickAngle!=0){
 		moveJoystickAngle=0;//set angle as 0 if not
 	}
@@ -56,13 +53,17 @@ function On_JoystickMove(move : MovingJoystick){
 			playerControl.isRunning = true;
 			playerControl.runToRight = true;
 			playerControl.speedRate = move.joystickAxis.x;
-			moveJoystickAngle = Mathf.Rad2Deg*Mathf.Atan(move.joystickAxis.y/move.joystickAxis.x);//get the angle(-90~90) of joystick
+			//moveJoystickAngle = Mathf.Rad2Deg*Mathf.Atan(move.joystickAxis.y/move.joystickAxis.x);//get the angle(-90~90) of joystick
+			moveJoystickAngle = move.joystickAxis.y*90;
+			//Debug.Log(move.joystickAxis.y);
 		}
 		else if(move.joystickAxis.x<-moveEffectiveRadius){
 			playerControl.isRunning = true;
 			playerControl.runToRight = false;
 			playerControl.speedRate = -move.joystickAxis.x;
-			moveJoystickAngle = Mathf.Rad2Deg*Mathf.Atan(move.joystickAxis.y/-move.joystickAxis.x);//get the angle(-90~90) of joystick
+			//moveJoystickAngle = Mathf.Rad2Deg*Mathf.Atan(move.joystickAxis.y/-move.joystickAxis.x);//get the angle(-90~90) of joystick
+			moveJoystickAngle = move.joystickAxis.y*90;
+			//Debug.Log(move.joystickAxis.y);
 		}
 		else{
 			isRunning=false;

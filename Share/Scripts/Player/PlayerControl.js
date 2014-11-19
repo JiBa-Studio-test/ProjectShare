@@ -13,7 +13,8 @@ var enableControl : boolean;//Enable the control from Input
 var enableAttack : boolean;//Enable Attack
 var initArmAngle : float;//the required angle to adjust gun to horizon
 var angle : float;//the angle to fire
-var effShootingAngle : float;//maximum angle allowed to rotate the arm
+var maxShootingAngle : float;//maximum angle allowed to rotate the arm
+var minShootingAngle : float;//minimum angle allowed to rotate the arm
 var speedRate : float;
 
 //set actions
@@ -63,9 +64,9 @@ function Start () {
 	enableAttack = true;
 	
 	//initialize parameters
-	if(effShootingAngle == 0.0)
+	if(maxShootingAngle == 0.0)
 	{
-		effShootingAngle = 45.0;
+		maxShootingAngle = 45.0;
 	}
 }
 
@@ -163,11 +164,11 @@ function Jump()
 
 function ArmRotate(rotateAngle : float)
 {
-	if(rotateAngle>=effShootingAngle){
-		rotateAngle = effShootingAngle;
+	if(rotateAngle>=maxShootingAngle){
+		rotateAngle = maxShootingAngle;
 	}
-	else if(rotateAngle<=-effShootingAngle){
-		rotateAngle = -effShootingAngle;
+	else if(rotateAngle<=-minShootingAngle){
+		rotateAngle = -minShootingAngle;
 	}
 	angle = rotateAngle;
 	var angleToHorizon=initArmAngle+rotateAngle;//the angle of arm refer to horizon
