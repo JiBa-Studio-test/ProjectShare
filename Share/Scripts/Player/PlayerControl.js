@@ -31,6 +31,7 @@ function Awake () {
 	initArmAngle = 19.0;//the initial difference of angle between arm and horizon
 	fireSpawner = GameObject.FindGameObjectWithTag("PlayerFireSpawner").gameObject.GetComponent("FireSpawner") as FireSpawner;
 	//spriteRenderer=GetComponentInChildren(SpriteRenderer);
+	
 }
 function Start () {
 	status = GetComponent("PlayerStatus") as PlayerStatus;//get status
