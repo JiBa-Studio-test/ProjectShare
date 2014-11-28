@@ -6,7 +6,7 @@ var warningColorLock:boolean;
 var fireParticle:GameObject;
 var brokenParticle:GameObject;
 var brokenTube:GameObject;
-
+var material:GameObject;
 var cloneFireParticle:GameObject;
 var cloneBrokenParticle:GameObject;
 
@@ -88,7 +88,17 @@ function Broken()
 		{
 			Destroy(cloneBrokenParticle);
 			Instantiate(brokenTube,transform.position,transform.rotation);
+			DropingMaterials();
 			Destroy(gameObject);
 		}
+	}
+}
+
+function DropingMaterials()
+{
+	var num:int=Random.Range(10,25);
+	for(var i:int=1;i<num;i++)
+	{
+		Instantiate(material,transform.position,transform.rotation);
 	}
 }

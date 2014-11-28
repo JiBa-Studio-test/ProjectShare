@@ -26,10 +26,17 @@ var vector:Vector2;
 var damageBlock:boolean;
 var noDamageTime:float;
 var dumbTime:float;
-
+//raycast
+var platformMask: LayerMask;
+var origin:Vector2;
+var distance:float;
+var direction:Vector2;
+var boxCollider:BoxCollider2D;
+var detectRestrict:int=0;
 function Awake () {
 	initArmAngle = 19.0;//the initial difference of angle between arm and horizon
 	fireSpawner = GameObject.FindGameObjectWithTag("PlayerFireSpawner").gameObject.GetComponent("FireSpawner") as FireSpawner;
+	boxCollider=GetComponent("BoxCollider2D");
 	//spriteRenderer=GetComponentInChildren(SpriteRenderer);
 }
 function Start () {
@@ -121,6 +128,7 @@ function FixedUpdate(){
 			}
 			**/
 	}
+
 }
 
 
@@ -158,6 +166,7 @@ function Jump()
 {
 	if(animator.GetBool("isJumping") == false)
 			{
+				
 				rigidbody2D.AddForce(Vector3.up * status.jumpHeight);
 				animator.SetBool("isJumping", true);
 			}
@@ -217,13 +226,6 @@ function AttackEnd()
 	ArmDown();
 }
 //When collision occurs
-function OnCollisionEnter2D(col : Collision2D)
-{
-	if(col.gameObject.tag == "Ground")//when jumping ends
-	{
-		animator.SetBool("isJumping", false);
-	}
-}
 
 function PushPlayer(vector:Vector2)
 {
@@ -278,4 +280,15 @@ function TimeForNoDamage()
 	}
 	while((Time.time-startingTime)<noDamageTime);
 	damageBlock=false;
+}
+
+function OnCollisionEnter2D(other:Collision2D)
+{
+	if(other.collider.tag=="Ground")
+	{
+		if(rigidbody2D.velocity.y==0)
+		{
+			animator.SetBool("isJumping", false);
+		}
+	}
 }
