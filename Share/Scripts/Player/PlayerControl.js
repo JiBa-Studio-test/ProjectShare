@@ -38,6 +38,7 @@ function Awake () {
 	fireSpawner = GameObject.FindGameObjectWithTag("PlayerFireSpawner").gameObject.GetComponent("FireSpawner") as FireSpawner;
 	boxCollider=GetComponent("BoxCollider2D");
 	//spriteRenderer=GetComponentInChildren(SpriteRenderer);
+	
 }
 function Start () {
 	status = GetComponent("PlayerStatus") as PlayerStatus;//get status
