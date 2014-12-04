@@ -1,0 +1,113 @@
+fileFormatVersion: 2
+guid: 618b156ce38846343ba4cb4b5f4ae076
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: enemySpawner_0
+    21300002: enemySpawner_1
+    21300004: enemySpawner_2
+    21300006: enemySpawner_4
+    21300008: enemySpawner_6
+    21300010: enemySpawner_5
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -2
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 0
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: enemySpawner_0
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 237
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: enemySpawner_1
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 30
+        width: 222
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: enemySpawner_2
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 185
+        width: 152
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: enemySpawner_4
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 116
+        width: 148
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: enemySpawner_6
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 52
+        width: 150
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: enemySpawner_5
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 2
+        width: 149
+        height: 36
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
