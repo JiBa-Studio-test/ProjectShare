@@ -32,7 +32,10 @@ var origin:Vector2;
 var distance:float;
 var direction:Vector2;
 var boxCollider:BoxCollider2D;
-var detectRestrict:int=0;
+var standingOn:GameObject;
+var lastStandingOn:GameObject;
+var activeGlobalPlatformPoint:Vector3;
+var activeLocalPlatformPoint:Vector3;
 function Awake () {
 	initArmAngle = 19.0;//the initial difference of angle between arm and horizon
 	fireSpawner = GameObject.FindGameObjectWithTag("PlayerFireSpawner").gameObject.GetComponent("FireSpawner") as FireSpawner;
@@ -129,7 +132,9 @@ function FixedUpdate(){
 			}
 			**/
 	}
-
+	CalculateRayOrigins();
+	HandlePlatforms();
+	StandingHandler();
 }
 
 
@@ -293,3 +298,73 @@ function OnCollisionEnter2D(other:Collision2D)
 		}
 	}
 }
+function CalculateRayOrigins()
+{
+	var size:Vector2=Vector2(boxCollider.size.x*Mathf.Abs(transform.localScale.x),boxCollider.size.y*Mathf.Abs(transform.localScale.y))/2;
+	var center:Vector2=Vector2(boxCollider.center.x*transform.localScale.x,boxCollider.center.y*transform.localScale.y);
+	origin=transform.position+Vector3(0,center.y-size.y);
+}
+function HandlePlatforms()
+{
+	direction=-Vector2.up;
+	if(rigidbody2D.velocity.y<=0)
+	{
+		Debug.DrawRay(origin,direction*0.2,Color.yellow);
+		var raycastHit=Physics2D.Raycast(origin,direction,0.2,platformMask);
+	}
+	if(rigidbody2D.velocity.y<=0)
+	{
+		if(raycastHit)
+		{
+			standingOn=raycastHit.collider.gameObject;
+		}
+	}
+	if(standingOn!=null)
+	{
+		if(lastStandingOn!=standingOn)
+		{
+			activeGlobalPlatformPoint=transform.position;
+			activeLocalPlatformPoint=standingOn.transform.InverseTransformPoint(transform.position);
+		}
+		var newGlobalPlatformPoint:Vector3=standingOn.transform.TransformPoint(activeLocalPlatformPoint);
+		var movingDistance:Vector3=newGlobalPlatformPoint-activeGlobalPlatformPoint;
+		if(movingDistance!=Vector3.zero)
+		{
+			transform.Translate(movingDistance,Space.World);
+		}
+	}
+	if(!raycastHit)
+	{
+			standingOn=null;
+	}
+	
+}
+function StandingHandler()
+{
+	if(standingOn!=null)
+	{
+		activeGlobalPlatformPoint=transform.position;
+		activeLocalPlatformPoint=standingOn.transform.InverseTransformPoint(transform.position);
+		if(lastStandingOn!=standingOn)
+		{
+			if(lastStandingOn!=null)
+			{
+				lastStandingOn.SendMessage("ControllerExit2D",this,SendMessageOptions.DontRequireReceiver);
+			}
+			standingOn.SendMessage("ControllerEnter2D",this,SendMessageOptions.DontRequireReceiver);
+			lastStandingOn=standingOn;
+		}
+		else if(standingOn!=null)
+		{
+			standingOn.SendMessage("ControllerStay2D",this,SendMessageOptions.DontRequireReceiver);
+		}
+		
+		
+	}
+	else if(lastStandingOn!=null)
+	{
+		lastStandingOn.SendMessage("ControllerExit2D",this,SendMessageOptions.DontRequireReceiver);
+		lastStandingOn=null; 
+	}
+}
+
