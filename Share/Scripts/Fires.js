@@ -7,6 +7,7 @@ var playerStatus: PlayerStatus;
 var damageText:GameObject;
 var explodingParticle:GameObject;
 var angle: float;
+var frequency:float;
 function Start()
 {
 	playerStatus=GameObject.FindGameObjectWithTag("Player").GetComponent("PlayerStatus");

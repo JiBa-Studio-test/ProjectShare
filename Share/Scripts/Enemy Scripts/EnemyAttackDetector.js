@@ -15,7 +15,7 @@ function OnTriggerStay2D(other:Collider2D)
 	
 	if(other.tag=="Player")
 	{
-		if(attackable)
+		if(attackable&&!enemyStatus.isDead)
 		{
 			if((other.transform.position.x-transform.position.x)>0)
 			{

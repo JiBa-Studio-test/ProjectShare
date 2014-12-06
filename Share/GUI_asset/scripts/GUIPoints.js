@@ -5,18 +5,18 @@ var label:UILabel;
 var currentPoints:int;
 function Start()
 {
-	currentPoints=GameManagement.points;
+	currentPoints=GameManagement.gameManagement.points;
 	GetComponent(UILabel);
 	label.text="Points: "+"0";
 }
 function FixedUpdate() 
 {
 		
-		label.text="Points: "+GameManagement.points.ToString();
-		if(currentPoints!=GameManagement.points)
+		label.text="Points: "+GameManagement.gameManagement.points.ToString();
+		if(currentPoints!=GameManagement.gameManagement.points)
 		{
 			Active();
-			currentPoints=GameManagement.points;
+			currentPoints=GameManagement.gameManagement.points;
 		}
 }
 

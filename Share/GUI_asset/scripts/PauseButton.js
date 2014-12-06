@@ -1,7 +1,6 @@
 ﻿var mainMenu:GameObject;
 function Start()
 {
-	GameStatus.Game.gamePause=false;
 	//mainMenu=GameObject.Find("MainMenu");
 	mainMenu.SetActive(false);
 }

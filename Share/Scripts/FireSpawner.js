@@ -6,10 +6,12 @@ var frequency: float;
 function Start()
 {
 	timeOver=true;
+	frequency=fireScript.frequency;
 	
 }
 function Update()
 {
+	frequency=fireScript.frequency;
 	if(Input.GetKey(KeyCode.Z))
 	{
 		isAttacking=true;

@@ -89,6 +89,10 @@ function Broken()
 			Destroy(cloneBrokenParticle);
 			Instantiate(brokenTube,transform.position,transform.rotation);
 			DropingMaterials();
+			
+			EnemyManagement.enemyManagement.spawnerList.Remove(this.gameObject);
+			EnemyManagement.enemyManagement.spawnerDestroyed++;
+			
 			Destroy(gameObject);
 		}
 	}
@@ -96,7 +100,7 @@ function Broken()
 
 function DropingMaterials()
 {
-	var num:int=Random.Range(10,25);
+	var num:int=Random.Range(25,50);
 	for(var i:int=1;i<num;i++)
 	{
 		Instantiate(material,transform.position,transform.rotation);

@@ -292,7 +292,7 @@ function OnCollisionEnter2D(other:Collision2D)
 {
 	if(other.collider.tag=="Ground")
 	{
-		if(rigidbody2D.velocity.y==0)
+		if(rigidbody2D.velocity.y<=0)
 		{
 			animator.SetBool("isJumping", false);
 		}
