@@ -101,5 +101,5 @@ function PushEnemy(vector:Vector2)
 }
 function PointsToAdd()
 {
-	GameManagement.points+=enemyStatus.bonus;
+	GameManagement.gameManagement.points+=enemyStatus.bonus;
 }
