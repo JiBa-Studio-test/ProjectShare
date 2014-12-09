@@ -54,8 +54,12 @@ function CallPanel()
 			{
 				callLock=spawnerDestroyed;
 				weaponPanel.transform.position=Vector2(0,0);
-				Time.timeScale=0;
-				GameStatus.Game.gamePause=true;
+				GameManagement.gameManagement.PauseOrResume();
 			}
 		}
+}
+function RemovePanel()
+{
+	GameManagement.gameManagement.PauseOrResume();
+	weaponPanel.transform.position=Vector2(10000,0);
 }

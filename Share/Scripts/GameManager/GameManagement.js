@@ -4,6 +4,7 @@ var crystalNum:int;
 var fire:GameObject;
 var defaultATKForFires:int;
 var defaultSPDForFires:float;
+var pauseButton:GameObject;
 function Awake()
 {
 	gameManagement=this;
@@ -15,6 +16,7 @@ function Reset()
 	points=0;
 	fire.GetComponent(Fires).ATK=defaultATKForFires;
 	fire.GetComponent(Fires).frequency=defaultSPDForFires;
+	GameStatus.Game.gamePause=false;
 	
 }
 
@@ -46,4 +48,27 @@ function DeductCrystalNum(numToDeduct:int)
 function SetCrystalNum(num:int)
 {
 	crystalNum=num;
+}
+
+function PauseOrResume()
+{
+	if(GameStatus.Game.gamePause)
+	{
+		Time.timeScale=1;
+		GameStatus.Game.gamePause=false;
+		pauseButton.SetActive(true);
+	}
+	else
+	{
+		Time.timeScale=0;
+		GameStatus.Game.gamePause=true;
+		pauseButton.SetActive(false);
+	}	
+}
+
+function Restart()
+{
+	GameManagement.gameManagement.Reset();
+	Application.LoadLevel(0);
+	Time.timeScale=1;
 }
