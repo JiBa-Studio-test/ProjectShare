@@ -1,6 +1,8 @@
 ﻿var duration:int;
 var fullDuration:int;
+
 var spriteRenderer: SpriteRenderer;
+
 var warningColorLock:boolean;
 
 var fireParticle:GameObject;
@@ -14,15 +16,19 @@ function Start()
 {
 	duration=50;
 	fullDuration=50;
+
 	spriteRenderer=GetComponent(SpriteRenderer);
+
 	warningColorLock=true;
 }
 function Update()
 {
+	/***
 	if(!warningColorLock)
 	{
 		WarningColor();
 	}
+	***/
 	if(duration<=0)
 	{
 		Broken();
