@@ -27,7 +27,7 @@ function FixedUpdate()
 		}
 		if(Mathf.Abs(y-player.position.y)>margin.y)
 		{
-			y=Mathf.Lerp(y,player.position.y,smoothing.y*Time.deltaTime);
+			y=Mathf.Lerp(y,player.position.y+1.1,smoothing.y*Time.deltaTime);
 		}
 	}
 		var cameraHalfWidth=camera.orthographicSize*(parseFloat(Screen.width)/parseFloat(Screen.height));
