@@ -4,6 +4,7 @@ var fullDuration:int;
 var spriteRenderer: SpriteRenderer;
 
 var warningColorLock:boolean;
+var damageFlash:int;
 
 var fireParticle:GameObject;
 var brokenParticle:GameObject;
@@ -17,21 +18,33 @@ function Start()
 	duration=50;
 	fullDuration=50;
 
-	spriteRenderer=GetComponent(SpriteRenderer);
+	spriteRenderer=GetComponentInChildren.<SpriteRenderer>();
 
 	warningColorLock=true;
 }
 function Update()
 {
-	/***
 	if(!warningColorLock)
 	{
 		WarningColor();
 	}
-	***/
+	if(duration>0)
+	{
+		if((damageFlash-1)>0)
+		{
+			var percent: float=(10.0-parseFloat(damageFlash))/10.0;
+			spriteRenderer.color=Color.Lerp(Color.red,Color.white,percent);
+			damageFlash--;
+		}
+		else
+		{
+			spriteRenderer.color=Color.white;
+		}
+	}
 	if(duration<=0)
 	{
 		Broken();
+		damageFlash=0;
 	}
 }
 function Damage(ATK:int)
@@ -45,11 +58,11 @@ function Damage(ATK:int)
 			warningColorLock=false;
 			Fire();
 		}
-		var durationPercent=parseFloat(duration)/parseFloat(fullDuration);
-		if(durationPercent>0)
-		{
-			spriteRenderer.color=Color.Lerp(Color.red,Color.white,durationPercent);
-		}
+		//var durationPercent=parseFloat(duration)/parseFloat(fullDuration);
+		//if(durationPercent>0)
+		//{
+		damageFlash=15;	
+		//}
 	}
 }
 function WarningColor()
@@ -75,7 +88,8 @@ function ChangeColor()
 
 function Fire()
 {
-	cloneFireParticle=Instantiate(fireParticle,transform.position+Vector2(1,2),transform.rotation);
+	cloneFireParticle=Instantiate(fireParticle,transform.position+Vector2(0,1),transform.rotation);
+	cloneFireParticle.transform.parent=transform;
 }
 
 function Broken()
@@ -85,7 +99,8 @@ function Broken()
 		if(!cloneFireParticle.GetComponent(ParticleSystem).isPlaying)
 		{
 			Destroy(cloneFireParticle);
-			cloneBrokenParticle=Instantiate(brokenParticle,transform.position+Vector2(1,2),transform.rotation) as GameObject;
+			cloneBrokenParticle=Instantiate(brokenParticle,transform.position+Vector2(0,1),transform.rotation) as GameObject;
+			cloneBrokenParticle.transform.parent=transform;
 		}
 	}
 	if(cloneBrokenParticle!=null)
@@ -93,13 +108,14 @@ function Broken()
 		if(!cloneBrokenParticle.GetComponent(ParticleSystem).isPlaying)
 		{
 			Destroy(cloneBrokenParticle);
+			Destroy(gameObject);
+			
 			Instantiate(brokenTube,transform.position,transform.rotation);
 			DropingMaterials();
-			
 			EnemyManagement.enemyManagement.spawnerList.Remove(this.gameObject);
-			EnemyManagement.enemyManagement.spawnerDestroyed++;
+			EnemyManagement.enemyManagement.spawnerDestroyed++;	
 			
-			Destroy(gameObject);
+			
 		}
 	}
 }

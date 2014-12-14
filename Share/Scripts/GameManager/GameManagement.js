@@ -5,7 +5,7 @@ var fire:GameObject;
 var defaultATKForFires:int;
 var defaultSPDForFires:float;
 var pauseButton:GameObject;
-function Awake()
+function Start()
 {
 	gameManagement=this;
 	Reset();
@@ -16,7 +16,7 @@ function Reset()
 	points=0;
 	fire.GetComponent(Fires).ATK=defaultATKForFires;
 	fire.GetComponent(Fires).frequency=defaultSPDForFires;
-	GameStatus.Game.gamePause=false;
+	//GameStatus.Game.gamePause=false;
 	
 }
 

@@ -25,7 +25,7 @@ function FixedUpdate()
 		{	
 			x=Mathf.Lerp(x,player.position.x,smoothing.x*Time.deltaTime);	
 		}
-		if(Mathf.Abs(y-player.position.y)>margin.y)
+		if(Mathf.Abs(y-(player.position.y+1.1))>margin.y)
 		{
 			y=Mathf.Lerp(y,player.position.y+1.1,smoothing.y*Time.deltaTime);
 		}
