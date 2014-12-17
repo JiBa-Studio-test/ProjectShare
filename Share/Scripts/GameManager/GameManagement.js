@@ -69,6 +69,6 @@ function PauseOrResume()
 function Restart()
 {
 	GameManagement.gameManagement.Reset();
-	Application.LoadLevel(0);
+	Application.LoadLevel(2);
 	Time.timeScale=1;
 }
