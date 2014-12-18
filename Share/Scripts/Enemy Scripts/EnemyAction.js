@@ -72,6 +72,7 @@ function Die()
 			animator.SetBool("isDead",true);
 			GetComponent(BoxCollider2D).enabled = false;
 			enemyStatus.isDead=true;
+			
 		}
 }
 function Stop()
@@ -98,6 +99,13 @@ function BeKilled()
 function PushEnemy(vector:Vector2)
 {
 	rigidbody2D.AddForce(vector*pushingForce);
+	//fatal attack
+	if(enemyStatus.HP==0)
+	{
+		rigidbody2D.fixedAngle=false;
+		vector.y=5;
+		rigidbody2D.AddForce(vector*pushingForce*10);
+	}
 }
 function PointsToAdd()
 {

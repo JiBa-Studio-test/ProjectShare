@@ -1,5 +1,5 @@
 ﻿var enemy: GameObject;
-var spawn: boolean=true;
+var spawn: boolean;
 var waitTime: float;
 
 function Start()
@@ -7,6 +7,7 @@ function Start()
 	if(waitTime == 0){
 		waitTime = 2;
 	}
+	spawn=true;
 }
 
 function FixedUpdate()

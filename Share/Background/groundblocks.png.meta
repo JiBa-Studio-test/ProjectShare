@@ -53,61 +53,21 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 35
-        y: 362
-        width: 64
-        height: 64
+        y: 177
+        width: 284
+        height: 249
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: groundblocks_1
       rect:
         serializedVersion: 2
         x: 358
-        y: 176
+        y: 177
         width: 111
         height: 248
       alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: groundblocks_2
-      rect:
-        serializedVersion: 2
-        x: 104
-        y: 362
-        width: 150
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: groundblocks_3
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 241
-        width: 64
-        height: 110
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: groundblocks_4
-      rect:
-        serializedVersion: 2
-        x: 106
-        y: 242
-        width: 150
-        height: 110
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: groundblocks_5
-      rect:
-        serializedVersion: 2
-        x: 255
-        y: 362
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

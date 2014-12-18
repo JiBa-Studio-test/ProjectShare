@@ -1,7 +1,14 @@
 fileFormatVersion: 2
 guid: b3544f5e9331282439a9d492d7c2772b
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: mon2_0
+    21300002: mon2_2
+    21300004: mon2_3
+    21300006: mon2_4
+    21300008: mon2_5
+    21300010: mon2_6
+    21300012: mon2_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -21,17 +28,17 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -2
   maxTextureSize: 1024
   textureSettings:
-    filterMode: -1
-    aniso: -1
+    filterMode: 0
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -42,6 +49,76 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: mon2_0
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 379
+        width: 144
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mon2_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 379
+        width: 123
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mon2_3
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 194
+        width: 121
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mon2_4
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 29
+        width: 143
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mon2_5
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 31
+        width: 123
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mon2_6
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 29
+        width: 160
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mon2_6
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 379
+        width: 161
+        height: 110
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
