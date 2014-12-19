@@ -8,6 +8,10 @@ TextureImporter:
     21300006: groundblocks_3
     21300008: groundblocks_4
     21300010: groundblocks_5
+    21300012: groundblocks_6
+    21300014: groundblocks_7
+    21300016: groundblocks_8
+    21300018: groundblocks_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -27,7 +31,7 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -3
+  textureFormat: -2
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
@@ -53,11 +57,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 35
-        y: 177
-        width: 284
-        height: 249
+        y: 376
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: groundblocks_1
       rect:
@@ -67,7 +71,87 @@ TextureImporter:
         width: 111
         height: 248
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: groundblocks_2
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 177
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: groundblocks_3
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 376
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: groundblocks_4
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 177
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: groundblocks_5
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 376
+        width: 150
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: groundblocks_6
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 177
+        width: 150
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: groundblocks_7
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 320
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: groundblocks_8
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 320
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: groundblocks_9
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 320
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

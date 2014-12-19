@@ -104,7 +104,7 @@ function PushEnemy(vector:Vector2)
 	{
 		rigidbody2D.fixedAngle=false;
 		vector.y=5;
-		rigidbody2D.AddForce(vector*pushingForce*10);
+		rigidbody2D.AddForce(vector*pushingForce*7);
 	}
 }
 function PointsToAdd()
