@@ -1,10 +1,14 @@
 ﻿var duration:int;
 var fullDuration:int;
+var ID:int;
+var location:int;
 
 var spriteRenderer: SpriteRenderer;
 
 var warningColorLock:boolean;
+var isBroken:boolean;
 var damageFlash:int;
+var attackable:boolean;
 
 var fireParticle:GameObject;
 var brokenParticle:GameObject;
@@ -12,11 +16,16 @@ var brokenTube:GameObject;
 var material:GameObject;
 var cloneFireParticle:GameObject;
 var cloneBrokenParticle:GameObject;
-
+function Awake()
+{
+	location=-1;
+}
 function Start()
 {
 	duration=50;
 	fullDuration=50;
+	isBroken=false;
+	attackable=true;
 
 	spriteRenderer=GetComponentInChildren.<SpriteRenderer>();
 
@@ -32,13 +41,9 @@ function Update()
 	{
 		if((damageFlash-1)>0)
 		{
-			var percent: float=(10.0-parseFloat(damageFlash))/10.0;
+			var percent: float=(15.0-parseFloat(damageFlash))/15.0;
 			spriteRenderer.color=Color.Lerp(Color.red,Color.white,percent);
 			damageFlash--;
-		}
-		else
-		{
-			spriteRenderer.color=Color.white;
 		}
 	}
 	if(duration<=0)
@@ -49,20 +54,19 @@ function Update()
 }
 function Damage(ATK:int)
 {
-	if(duration>0)
+	if(attackable)
 	{
-		duration-=ATK;
-		if(duration<=0)
+		if(duration>0)
 		{
-			duration=0;
-			warningColorLock=false;
-			Fire();
+			duration-=ATK;
+			if(duration<=0)
+			{
+				duration=0;
+				warningColorLock=false;
+				Fire();
+			}
+			damageFlash=15;	
 		}
-		//var durationPercent=parseFloat(duration)/parseFloat(fullDuration);
-		//if(durationPercent>0)
-		//{
-		damageFlash=15;	
-		//}
 	}
 }
 function WarningColor()
@@ -108,17 +112,20 @@ function Broken()
 		if(!cloneBrokenParticle.GetComponent(ParticleSystem).isPlaying)
 		{
 			Destroy(cloneBrokenParticle);
-			Destroy(gameObject);
-			
-			Instantiate(brokenTube,transform.position,transform.rotation);
+			gameObject.SetActive(false);
+			//Instantiate(brokenTube,transform.position,transform.rotation);
 			DropingMaterials();
-			EnemyManagement.enemyManagement.spawnerList.Remove(this.gameObject);
+			//EnemyManagement.enemyManagement.spawnerList.Remove(this.gameObject);
 			EnemyManagement.enemyManagement.spawnerDestroyed++;	
-			
-			
+			isBroken=true;
+			EnemyManagement.enemyManagement.ClearSpawner(location);
+			location=-1;
+			Reset();
+			EnemyManagement.enemyManagement.Respawn(ID);	
 		}
 	}
 }
+
 
 function DropingMaterials()
 {
@@ -127,4 +134,37 @@ function DropingMaterials()
 	{
 		Instantiate(material,transform.position,transform.rotation);
 	}
+}
+function Reset()
+{
+	spriteRenderer.color=Color.white;	
+	duration=50;
+	fullDuration=50;
+	isBroken=false;
+	warningColorLock=true;
+}
+//
+function RespawnFlash()
+{
+	RespawnOpacity();
+}
+
+function RespawnOpacity()
+{
+	attackable=false;
+	for(var i:float=1.0;i<=10;i++)
+	{
+		yield WaitForSeconds(0.05);
+		spriteRenderer.color.a=1.1-0.1*i;
+	}
+	ChangeOpacity();	
+}
+function ChangeOpacity()
+{
+	for(var i:float=1.0;i<=10;i++)
+	{
+		yield WaitForSeconds(0.05);
+		spriteRenderer.color.a=0.1*i;
+	}
+	attackable=true;	
 }

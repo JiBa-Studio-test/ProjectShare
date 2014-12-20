@@ -1,6 +1,9 @@
 ﻿import System.Collections.Generic;
 static var enemyManagement: EnemyManagement;
 var spawnerList : List.<GameObject>;
+var spawnerLocation:Transform[];
+var isVacant:boolean[];
+
 var spawnRate:float;
 var enemyNumber:int;
 var weaponPanel:GameObject;
@@ -13,6 +16,7 @@ function Awake()
 }
 function Start()
 {
+	isVacant=new boolean[spawnerLocation.length];
 	callLock=-1;
 	enemyNumber=0;
 	spawnerDestroyed=0;
@@ -27,6 +31,16 @@ function Start()
 				spawnerList.Add(child2.gameObject);
 			}
 		}
+	}
+	for(var x:int; x<isVacant.Length;x++)
+	{
+		isVacant[x]=true;
+	}
+	for(var i:int; i<spawnerList.Count;i++)
+	{
+		spawnerList[i].transform.position=spawnerLocation[i].position;
+		isVacant[i]=false;
+		spawnerList[i].GetComponent(EnemySpawnerDamage).location=i;
 	}
 }
 function FixedUpdate()
@@ -58,8 +72,33 @@ function CallPanel()
 			}
 		}
 }
+
 function RemovePanel()
 {
 	GameManagement.gameManagement.PauseOrResume();
 	weaponPanel.transform.position=Vector2(10000,0);
+}
+function ClearSpawner(location:int)
+{
+	isVacant[location]=true;
+}
+function Respawn(ID:int)
+{
+	var num:int;
+	num=Random.Range(0,isVacant.Length);
+	while(!isVacant[num])
+	{
+		num=Random.Range(0,isVacant.Length);
+	}
+	spawnerList[ID].transform.position=spawnerLocation[num].position;
+	isVacant[num]=false;
+	spawnerList[ID].GetComponent(EnemySpawnerDamage).location=num;
+	SpawnerWait(ID);
+}
+function SpawnerWait(ID:int)
+{
+	yield WaitForSeconds(3.0);
+	spawnerList[ID].SetActive(true);
+	spawnerList[ID].GetComponent(EnemySpawnerDamage).RespawnFlash();
+	
 }
