@@ -109,28 +109,7 @@ function FixedUpdate(){
 					animator.SetBool("isRunning",false);
 				}
 			}
-			/**
-			//jumping
-			if(Input.GetKey(KeyCode.Space))
-			{
-				Jump(status.jumpHeight);
-			}
-			**/
 			
-			//attacking
-			/**
-			if(Input.GetKey(KeyCode.Z))
-			{
-				if(enableAttack)
-				{
-					Attack();
-				}
-			}
-			else
-			{
-				AttackEnd();
-			}
-			**/
 	}
 	CalculateRayOrigins();
 	HandlePlatforms();
@@ -224,11 +203,10 @@ function Attack()
 }
 function AttackEnd()
 {
-	if(animator.GetBool("isAttacking"))
-	{
+
 		animator.SetBool("isAttacking",false);
 		isAttacking = false;
-	}
+
 	ArmDown();
 }
 //When collision occurs
@@ -247,11 +225,18 @@ function Damage(ATK:int)
 		if(status.HP<=0)
 		{
 			status.HP=0;
+			Die();// die when HP=0;
 		}
 		PushPlayer(vector*pushingForce);
 		Stop();
 		TimeForNoDamage();
 	}
+}
+
+function Die()
+{
+	enableControl=false;
+	animator.SetBool("isDead",true);
 }
 function Stop()
 {
