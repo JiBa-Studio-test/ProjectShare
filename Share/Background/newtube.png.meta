@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 87d16d81dcad80e47a5a8eb5f18b10f5
+guid: 21cd905424b6ac340950f9782f72d7db
 TextureImporter:
   fileIDToRecycleName:
-    21300000: floor_0
-    21300002: floor_1
-    21300004: floor_2
+    21300000: newtube_0
+    21300002: newtube_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -46,35 +45,25 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: floor_0
+    - name: newtube_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 170
-        width: 240
-        height: 43
+        x: 46
+        y: 239
+        width: 305
+        height: 114
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: floor_1
+    - name: newtube_1
       rect:
         serializedVersion: 2
-        x: 114
-        y: 92
-        width: 34
-        height: 43
+        x: 73
+        y: 84
+        width: 304
+        height: 117
       alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: floor_2
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 27
-        width: 240
-        height: 43
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
