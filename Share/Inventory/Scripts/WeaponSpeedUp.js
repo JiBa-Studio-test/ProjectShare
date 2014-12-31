@@ -1,4 +1,4 @@
-﻿import System.Collections.Generic;
+import System.Collections.Generic;
 var levelList : List.<GameObject>;
 var grid:UIGrid;
 var levelCell:GameObject;
