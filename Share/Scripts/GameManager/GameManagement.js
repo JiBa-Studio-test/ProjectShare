@@ -98,7 +98,7 @@ function Restart()
 	Time.timeScale=1;
 }
 
-function GetRanking()
+function GetRanking():int[]
 {
 	SortPoints();
 	return rankings;
