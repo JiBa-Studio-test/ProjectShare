@@ -45,18 +45,18 @@ function SortPoints()//resort the points for ranking after death
 	var rankingSet :boolean;
 	for(var i=1;i<=10;i++)
 	{
-		rankings[i] = PlayerPrefs.GetInt("ranking"+i,rankings[i]);
+		rankings[i] = PlayerPrefs.GetInt("ranking"+i,rankings[i-1]);
 		if(rankings[i]<points && !rankingSet)
 		{
-			rankingNO=i;
+			rankingNO=i; //the ranking
 			for(var j=10;j>i;j--)
 			{
-				rankings[j]=rankings[j-1];
-				rankingSet=true;
+				rankings[j-1]=rankings[j-2];
 			}
-			rankings[i]=points;
+			rankingSet=true;
+			rankings[i-1]=points;
 			
-			PlayerPrefs.SetInt("ranking"+i,rankings[i]);
+			PlayerPrefs.SetInt("ranking"+i,rankings[i-1]);
 		}
 	}
 }
