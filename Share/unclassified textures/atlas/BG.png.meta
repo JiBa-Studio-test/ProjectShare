@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: 41c2064141cf45746bc6d88c20b18807
+guid: 44efc55aadf01384b9340be99c448b0a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: GUI_bg_0
+    21300000: BG_0
+    21300002: BG_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -18,38 +19,48 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: 5
-  maxTextureSize: 1024
+  textureFormat: -3
+  maxTextureSize: 4096
   textureSettings:
-    filterMode: -1
+    filterMode: 2
     aniso: 1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: GUI_bg_0
+    - name: BG_0
       rect:
         serializedVersion: 2
-        x: 103
-        y: 42
+        x: 0
+        y: 0
         width: 800
+        height: 493
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BG_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 797
         height: 493
       alignment: 0
       pivot: {x: .5, y: .5}
