@@ -218,7 +218,7 @@ function PushPlayer(vector:Vector2)
 
 function Damage(ATK:int)
 {
-	if(!damageBlock)
+	if(!damageBlock&&!animator.GetBool("isDead"))
 	{
 		damageBlock=true;
 		status.HP-=ATK;

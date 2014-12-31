@@ -23,8 +23,11 @@ function Start () {
 	
 	
 	//initialize basic parameters
-	maxHP=100;
-	HP = 100;
+	maxHP=20;
+	if(HP==0)
+	{
+		HP=maxHP;
+	}
 	DEF = 0;
 	faceToRight = true;
 	weapon = 1;
