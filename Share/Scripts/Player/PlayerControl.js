@@ -22,7 +22,7 @@ var isRunning : boolean;
 var runToRight : boolean;
 var isAttacking : boolean;
 var pushingForce:float;
-var vector:Vector2;
+//var vector:Vector2;
 var damageBlock:boolean;
 var noDamageTime:float;
 var dumbTime:float;
@@ -216,7 +216,7 @@ function PushPlayer(vector:Vector2)
 	rigidbody2D.AddForce(vector*pushingForce);
 }
 
-function Damage(ATK:int)
+function Damage(ATK:int,vector:Vector2)
 {
 	if(!damageBlock&&!animator.GetBool("isDead"))
 	{
@@ -240,12 +240,21 @@ function Die()
 {
 	enableControl=false;
 	animator.SetBool("isDead",true);
+	ShowRankingPanel();
+	
 }
 function Stop()
 {
 	enableControl=false;
 	animator.SetBool("getDamaged",true);
 	StopTime(dumbTime);
+}
+
+function ShowRankingPanel()
+{
+	GameManagement.gameManagement.SetRanking();
+	GameManagement.gameManagement.rankingPanel.transform.localPosition=Vector2(0,0);
+	GameManagement.gameManagement.PauseOrResume();
 }
 
 function StopTime(time:float)

@@ -36,8 +36,17 @@ function OnTriggerEnter2D(other:Collider2D)
 	
 	if(other.tag=="Player")
 	{
-		other.GetComponent("PlayerControl").Damage(5);
-		Destroy(gameObject);
+		if((other.transform.position.x-transform.position.x)>0)
+		{
+			other.GetComponent("PlayerControl").Damage(5,Vector2(1,0));
+			Destroy(gameObject);
+		}
+		else
+		{
+			other.GetComponent("PlayerControl").Damage(5,Vector2(-1,0));
+			Destroy(gameObject);
+		
+		}
 		
 	}
 }
