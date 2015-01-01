@@ -240,7 +240,7 @@ function Die()
 {
 	enableControl=false;
 	animator.SetBool("isDead",true);
-	ShowRankingPanel();
+	//ShowRankingPanel();
 	
 }
 function Stop()
