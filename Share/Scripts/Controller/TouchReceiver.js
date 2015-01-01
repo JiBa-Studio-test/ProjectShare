@@ -45,33 +45,32 @@ function OnDestroy(){
 
 
 function On_JoystickMove(move : MovingJoystick){
-	//Moving
-	if (move.joystickName == "MoveJoystick"){
-
-		
-		if(move.joystickAxis.x>moveEffectiveRadius){
-			playerControl.isRunning = true;
-			playerControl.runToRight = true;
-			playerControl.speedRate = move.joystickAxis.x;
-			//moveJoystickAngle = Mathf.Rad2Deg*Mathf.Atan(move.joystickAxis.y/move.joystickAxis.x);//get the angle(-90~90) of joystick
-			moveJoystickAngle = move.joystickAxis.y*90;
-			//Debug.Log(move.joystickAxis.y);
+	if(playerControl.enableControl)
+	{
+		//Moving
+		if (move.joystickName == "MoveJoystick"){		
+			if(move.joystickAxis.x>moveEffectiveRadius){
+				playerControl.isRunning = true;
+				playerControl.runToRight = true;
+				playerControl.speedRate = move.joystickAxis.x;
+				//moveJoystickAngle = Mathf.Rad2Deg*Mathf.Atan(move.joystickAxis.y/move.joystickAxis.x);//get the angle(-90~90) of joystick
+				moveJoystickAngle = move.joystickAxis.y*90;
+				//Debug.Log(move.joystickAxis.y);
+			}
+			else if(move.joystickAxis.x<-moveEffectiveRadius){
+				playerControl.isRunning = true;
+				playerControl.runToRight = false;
+				playerControl.speedRate = -move.joystickAxis.x;
+				//moveJoystickAngle = Mathf.Rad2Deg*Mathf.Atan(move.joystickAxis.y/-move.joystickAxis.x);//get the angle(-90~90) of joystick
+				moveJoystickAngle = move.joystickAxis.y*90;
+				//Debug.Log(move.joystickAxis.y);
+			}
+			else{
+				isRunning=false;
+			}
+			SetAngle(moveJoystickAngle);	
 		}
-		else if(move.joystickAxis.x<-moveEffectiveRadius){
-			playerControl.isRunning = true;
-			playerControl.runToRight = false;
-			playerControl.speedRate = -move.joystickAxis.x;
-			//moveJoystickAngle = Mathf.Rad2Deg*Mathf.Atan(move.joystickAxis.y/-move.joystickAxis.x);//get the angle(-90~90) of joystick
-			moveJoystickAngle = move.joystickAxis.y*90;
-			//Debug.Log(move.joystickAxis.y);
-		}
-		else{
-			isRunning=false;
-		}
-		SetAngle(moveJoystickAngle);
-		
 	}
-	
 }
 // Touch start event  
 function On_JoystickMoveEnd(move : MovingJoystick){
@@ -85,13 +84,16 @@ function On_JoystickMoveEnd(move : MovingJoystick){
 
 function On_ButtonPress(button : String)
 {
-	//Attacking
-	if(button == "AttackButton"){
-		//the interval of angle is always from -90 to 90
-		playerControl.Attack();
-	}
-	if(button == "JumpButton"){
-		playerControl.Jump();
+	if(playerControl.enableControl)
+	{
+		//Attacking
+		if(button == "AttackButton"){
+			//the interval of angle is always from -90 to 90
+			playerControl.Attack();
+		}
+		if(button == "JumpButton"){
+			playerControl.Jump();
+		}
 	}
 }
 function On_ButtonUp(button : String)

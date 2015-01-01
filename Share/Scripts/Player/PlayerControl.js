@@ -227,9 +227,12 @@ function Damage(ATK:int)
 			status.HP=0;
 			Die();// die when HP=0;
 		}
+		else
+		{
 		PushPlayer(vector*pushingForce);
 		Stop();
 		TimeForNoDamage();
+		}
 	}
 }
 
