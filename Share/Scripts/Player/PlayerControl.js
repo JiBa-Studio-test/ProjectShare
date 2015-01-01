@@ -254,8 +254,7 @@ function ShowRankingPanel()
 {
 	GameManagement.gameManagement.SetRanking();
 	GameManagement.gameManagement.rankingPanel.transform.localPosition=Vector2(0,0);
-	//GameManagement.gameManagement.PauseOrResume();
-	GameManagement.gameManagement.RankingColor();
+	GameManagement.gameManagement.PauseOrResume();
 }
 
 function StopTime(time:float)

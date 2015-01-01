@@ -137,24 +137,14 @@ function  SetRanking()
 		allRankings[i].GetComponent(UILabel).text=rankings[num].ToString();
 		num++;
 	}
+	RankingColor();
 }
 
 function RankingColor()
 {
 	if(rankingNO!=0)
 	{
-		while(true)
-		{
-			for(var i:float=1;i<=10;i++)
-			{	
-				yield WaitForSeconds(0.05);
-				allRankings[rankingNO-1].GetComponent("UILabel").color=Color.Lerp(Color.yellow,Color.red,i/10.0);
-			}
-			for(var p:float=1;p<=10;p++)
-			{
-				yield WaitForSeconds(0.05);
-				allRankings[rankingNO-1].GetComponent("UILabel").color=Color.Lerp(Color.red,Color.yellow,p/10.0);
-			}
-		}
+		allRankings[rankingNO-1].GetComponent("UILabel").color=Color.red;
+		allRankings[rankingNO-1].transform.parent.GetComponent("UILabel").color=Color.red;
 	}
 }
