@@ -5,14 +5,28 @@ var fire:GameObject;
 var defaultATKForFires:int;
 var defaultSPDForFires:float;
 var pauseButton:GameObject;
+var rankingPanel:GameObject;
+var lock:boolean=true;	
 
+var allRankings: List.<GameObject>;
 var rankings : int[] = new int[10];
 var rankingNO : int;
 
 function Start()
 {
+	allRankings=new List.<GameObject>();
+	for(var child1:Transform in rankingPanel.transform)//scan all childern
+	{
+		if(child1.gameObject.tag=="RANK")
+		{
+			for(var child2:Transform in child1.transform)//scan all childern
+			{
+				allRankings.Add(child2.gameObject);
+			}
+		}
+	}
 	gameManagement=this;
-	rankings = [10000,8000,7000,6000,5000,4000,3000,2000,1000,500];//the initial ranking
+	rankings = [10000,8000,7000,6000,5000,4000,3000,2000,1000,1];//the initial ranking
 	Reset();
 }
 
@@ -45,8 +59,8 @@ function SortPoints()//resort the points for ranking after death
 	var rankingSet :boolean;
 	for(var i=1;i<=10;i++)
 	{
-		rankings[i] = PlayerPrefs.GetInt("ranking"+i,rankings[i-1]);
-		if(rankings[i]<points && !rankingSet)
+		rankings[i-1] = PlayerPrefs.GetInt("ranking"+i,rankings[i-1]);
+		if(rankings[i-1]<points && !rankingSet)
 		{
 			rankingNO=i; //the ranking
 			for(var j=10;j>i;j--)
@@ -97,9 +111,38 @@ function Restart()
 	Application.LoadLevel(0);
 	Time.timeScale=1;
 }
-
+/*
 function GetRanking():int[]
 {
 	SortPoints();
 	return rankings;
+}
+*/
+
+function  SetRanking()
+{
+	var num:int=0;
+	SortPoints();
+	for(var i=0;i<10;i++)
+	{	
+		allRankings[i].GetComponent(UILabel).text=rankings[num].ToString();
+		num++;
+	}
+}
+
+function RankingColor()
+{
+	while(true)
+	{
+		for(var i:float=1;i<=10;i++)
+		{	
+			yield WaitForSeconds(0.05);
+			allRankings[0].GetComponent("UILabel").color=Color.Lerp(Color.yellow,Color.red,i/10.0);
+		}
+		for(var p:float=1;p<=10;p++)
+		{
+			yield WaitForSeconds(0.05);
+			allRankings[0].GetComponent("UILabel").color=Color.Lerp(Color.red,Color.yellow,p/10.0);
+		}
+	}
 }
