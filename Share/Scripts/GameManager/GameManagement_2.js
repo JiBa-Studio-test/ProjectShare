@@ -3,6 +3,7 @@ var allRankings: List.<GameObject>;
 var rankings : int[] = new int[10];
 var rankingNO : int=0;
 var rankingPanel:GameObject;
+var aboutPanel:GameObject;
 function Start()
 {
 	allRankings=new List.<GameObject>();
@@ -59,5 +60,11 @@ function  SetRanking()
 	}
 	rankingPanel.transform.localPosition=Vector2(-91,0);
 	
+}
+
+function About()
+{
+	aboutPanel.transform.localPosition=Vector2(-91,0);
+
 }
 
