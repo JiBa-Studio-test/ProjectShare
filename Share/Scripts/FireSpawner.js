@@ -3,11 +3,12 @@ var fireScript: Fires;
 var isAttacking: boolean;
 var timeOver: boolean;
 var frequency: float;
+var shootingSFX: AudioSource;
 function Start()
 {
 	timeOver=true;
 	frequency=fireScript.frequency;
-	
+	shootingSFX=GetComponent("AudioSource");
 }
 function Update()
 {
@@ -40,6 +41,7 @@ function Spawn(angle : float)
 	//send angle to set the routine of fire
 	
 	var position: Vector3 = Vector3(transform.position.x,transform.position.y,transform.position.z);
+	shootingSFX.Play();
 	var fireInstance : GameObject = Instantiate(firePrefab,position,Quaternion.Euler(0,0,angle));
 	fireInstance.GetComponent(Fires).angle=angle;
 	

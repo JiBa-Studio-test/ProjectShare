@@ -15,3 +15,8 @@ function SetFaceDirection(faceToRight : boolean)
 		transform.localScale.x = -transform.localScale.x;
 	}
 }
+
+function CallRanking()
+{
+	GetComponentInParent(PlayerControl).ShowRankingPanel();
+}
