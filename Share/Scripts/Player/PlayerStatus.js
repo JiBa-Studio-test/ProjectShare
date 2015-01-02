@@ -23,7 +23,7 @@ function Start () {
 	
 	
 	//initialize basic parameters
-	maxHP=20;
+	maxHP=50;
 	if(HP==0)
 	{
 		HP=maxHP;

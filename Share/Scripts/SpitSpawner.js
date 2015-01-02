@@ -12,7 +12,7 @@ function Start()
 }
 function FixedUpdate()
 {
-	if(timeOver&&!_AI_monster2.attackLock)
+	if(timeOver&&!_AI_monster2.attackLock&&!enemyStatus.isDead)
 	{
 		Spawn();
 	}

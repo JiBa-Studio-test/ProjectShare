@@ -50,12 +50,12 @@ function AIActionToPlayer()//following movement for enemy
 function GoLeft()
 {
 	transform.localScale.x=-ScaleX;
-	transform.position+=Vector3.left*enemyAction.speed*Time.deltaTime;
+	transform.position+=Vector3.left*enemyAction.speed*EnemyManagement.enemyManagement.enemyMovementFactor*Time.deltaTime;
 }
 function GoRight()
 {
 	transform.localScale.x=ScaleX;
-	transform.position+=Vector3.right*enemyAction.speed*Time.deltaTime;
+	transform.position+=Vector3.right*enemyAction.speed*EnemyManagement.enemyManagement.enemyMovementFactor*Time.deltaTime;
 }
 
 function RandomMove()
@@ -74,7 +74,7 @@ function RandomMove()
 	{
 		toLeft--;
 		transform.localScale.x=-ScaleX;
-		transform.position+=Vector3.left*speedForRandomMove*Time.deltaTime;
+		transform.position+=Vector3.left*speedForRandomMove*EnemyManagement.enemyManagement.enemyMovementFactor*Time.deltaTime;
 		if(toLeft==0)
 		{
 			ifFinished=true;
@@ -84,7 +84,7 @@ function RandomMove()
 	{
 		toRight--;
 		transform.localScale.x=ScaleX;
-		transform.position+=Vector3.right*speedForRandomMove*Time.deltaTime;	
+		transform.position+=Vector3.right*speedForRandomMove*EnemyManagement.enemyManagement.enemyMovementFactor*Time.deltaTime;	
 		if(toRight==0)
 		{
 			ifFinished=true;
@@ -94,7 +94,7 @@ function RandomMove()
 	{
 		enemyAction.animator.SetBool("isRunning",false);
 		toStop--;
-		transform.position+=Vector3.zero*speedForRandomMove*Time.deltaTime;	
+		transform.position+=Vector3.zero*speedForRandomMove*EnemyManagement.enemyManagement.enemyMovementFactor*Time.deltaTime;	
 		if(toStop==0)
 		{
 			ifFinished=true;
