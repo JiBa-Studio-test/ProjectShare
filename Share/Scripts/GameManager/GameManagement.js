@@ -7,6 +7,7 @@ var defaultSPDForFires:float;
 var pauseButton:GameObject;
 var rankingPanel:GameObject;
 var UI:GameObject;
+var buttonSound: AudioSource;
 
 var allRankings: List.<GameObject>;
 var rankings : int[] = new int[10];
@@ -15,6 +16,7 @@ var rankingNO : int=0;
 var easyTouch : GameObject;
 function Start()
 {
+	buttonSound=GetComponent(AudioSource);
 	allRankings=new List.<GameObject>();
 	for(var child1:Transform in rankingPanel.transform)//scan all childern
 	{
@@ -156,4 +158,9 @@ function RankingColor()
 		allRankings[rankingNO-1].GetComponent("UILabel").color=Color.red;
 		allRankings[rankingNO-1].transform.parent.GetComponent("UILabel").color=Color.red;
 	}
+}
+
+function PlaySound()
+{
+	buttonSound.Play();
 }
