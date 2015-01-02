@@ -14,8 +14,9 @@ function Update()
 {
 	if(timeOver&&!_AI_monster2.attackLock)
 	{
-		Spawn();	
+		Spawn();
 	}
+	
 }
 function Spawn()
 {

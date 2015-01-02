@@ -4,6 +4,7 @@ var spawnerList : List.<GameObject>;
 var spawnerLocation:Transform[];
 var isVacant:boolean[];
 
+var enemyFactor:float;
 var spawnRate:float;
 var enemyNumber:int;
 var weaponPanel:GameObject;
@@ -16,6 +17,7 @@ function Awake()
 }
 function Start()
 {
+	enemyFactor=1;
 	isVacant=new boolean[spawnerLocation.length];
 	callLock=-1;
 	enemyNumber=0;
@@ -47,6 +49,7 @@ function FixedUpdate()
 {
 	SetSpawnRate();
 	CallPanel();
+	UpdateEnemy();
 }
 function SetSpawnRate()
 {
@@ -64,7 +67,7 @@ function CallPanel()
 {
 		if(callLock!=spawnerDestroyed)
 		{
-			if((spawnerDestroyed)%2==0&&(spawnerDestroyed!=0))
+			if((spawnerDestroyed)%5==0&&(spawnerDestroyed!=0))
 			{
 				callLock=spawnerDestroyed;
 				weaponPanel.transform.localPosition=Vector2(160,-50);
@@ -101,4 +104,9 @@ function SpawnerWait(ID:int)
 	spawnerList[ID].SetActive(true);
 	spawnerList[ID].GetComponent(EnemySpawnerDamage).RespawnFlash();
 	
+}
+
+function UpdateEnemy()
+{
+	enemyFactor=1.1*spawnerDestroyed;
 }
