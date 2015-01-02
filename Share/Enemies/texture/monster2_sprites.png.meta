@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: 5cfd0e7e5720b944986921a6cd32e74f
+guid: 7fe379750916c64419cc75459c440564
 TextureImporter:
   fileIDToRecycleName:
-    21300000: container_0
+    21300000: monster2_sprites_0
+    21300002: monster2_sprites_1
+    21300004: monster2_sprites_2
+    21300006: monster2_sprites_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -44,15 +47,45 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: container_0
+    - name: monster2_sprites_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 10
-        width: 44
-        height: 65
+        x: 19
+        y: 49
+        width: 179
+        height: 156
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: monster2_sprites_1
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 29
+        width: 198
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: monster2_sprites_2
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 41
+        width: 184
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: monster2_sprites_3
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 37
+        width: 179
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

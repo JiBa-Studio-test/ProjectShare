@@ -12,6 +12,7 @@ var allRankings: List.<GameObject>;
 var rankings : int[] = new int[10];
 var rankingNO : int=0;
 
+var easyTouch : GameObject;
 function Start()
 {
 	allRankings=new List.<GameObject>();
@@ -28,6 +29,11 @@ function Start()
 	gameManagement=this;
 	rankings = [10000,8000,7000,6000,5000,4000,3000,2000,1000,1];//the initial ranking
 	Reset();
+	
+	if(easyTouch==null)
+	{
+		easyTouch=GameObject.FindGameObjectWithTag("EasyTouch");
+	}
 }
 
 
@@ -97,12 +103,14 @@ function PauseOrResume()
 		Time.timeScale=1;
 		GameStatus.Game.gamePause=false;
 		pauseButton.SetActive(true);
+		easyTouch.SetActive(true);
 	}
 	else
 	{
 		Time.timeScale=0;
 		GameStatus.Game.gamePause=true;
 		pauseButton.SetActive(false);
+		easyTouch.SetActive(false);
 	}	
 }
 
@@ -130,6 +138,7 @@ function GetRanking():int[]
 
 function  SetRanking()
 {
+	easyTouch.SetActive(false);
 	var num:int=0;
 	SortPoints();
 	for(var i=0;i<10;i++)
