@@ -4,8 +4,11 @@ var rankings : int[] = new int[10];
 var rankingNO : int=0;
 var rankingPanel:GameObject;
 var aboutPanel:GameObject;
+
+var buttonSound:AudioSource;
 function Start()
 {
+	buttonSound=GetComponent(AudioSource);
 	allRankings=new List.<GameObject>();
 	for(var child1:Transform in rankingPanel.transform)//scan all childern
 	{
@@ -68,3 +71,7 @@ function About()
 
 }
 
+function PlaySound()
+{
+	buttonSound.Play();
+}

@@ -6,9 +6,7 @@ function Start () {
 	enemyAction = parent.GetComponent("EnemyAction") as EnemyAction;
 }
 
-function Update () {
 
-}
 
 function SendDeadSignal(){
 	enemyAction.BeKilled();
