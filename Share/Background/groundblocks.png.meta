@@ -12,6 +12,8 @@ TextureImporter:
     21300014: groundblocks_7
     21300016: groundblocks_8
     21300018: groundblocks_9
+    21300020: groundblocks_10
+    21300022: groundblocks_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -67,9 +69,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 358
-        y: 177
+        y: 227
         width: 111
-        height: 248
+        height: 145
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,6 +151,26 @@ TextureImporter:
         x: 97
         y: 320
         width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: groundblocks_10
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 373
+        width: 111
+        height: 52
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: groundblocks_11
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 177
+        width: 111
         height: 50
       alignment: 0
       pivot: {x: .5, y: .5}
