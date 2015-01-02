@@ -1,11 +1,11 @@
 ﻿var enemy: GameObject;
 var spawn: boolean;
-var waitTime: float;
-
+var minWaitTime: float;
+var waitTime:float;
 function Start()
 {
-	if(waitTime == 0){
-		waitTime = 2;
+	if(minWaitTime == 0){
+		minWaitTime = 5;
 	}
 	spawn=true;
 }
@@ -34,7 +34,11 @@ function SetSpawnWait()
 }
 function WaitTime()
 {
-	waitTime=waitTime/EnemyManagement.enemyManagement.spawnRate;
+	waitTime=minWaitTime/EnemyManagement.enemyManagement.spawnRate;
+	if(waitTime>20.0)
+	{
+		waitTime=20.0;
+	}
 }
 
 

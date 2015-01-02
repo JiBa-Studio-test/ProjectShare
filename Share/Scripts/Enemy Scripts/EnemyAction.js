@@ -71,8 +71,7 @@ function Die()
 		{
 			animator.SetBool("isDead",true);
 			GetComponent(BoxCollider2D).enabled = false;
-			enemyStatus.isDead=true;
-			
+			enemyStatus.isDead=true;			
 		}
 }
 function Stop()
