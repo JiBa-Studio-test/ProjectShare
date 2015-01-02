@@ -87,7 +87,7 @@ function RandomMove()
 	{
 		toLeft--;
 		transform.localScale.x=-ScaleX;
-		transform.position+=Vector3.left*speedForRandomMove*Time.deltaTime;
+		transform.position+=Vector3.left*speedForRandomMove*EnemyManagement.enemyManagement.enemyFactor*Time.deltaTime;
 		if(toLeft==0)
 		{
 			ifFinished=true;
@@ -97,7 +97,7 @@ function RandomMove()
 	{
 		toRight--;
 		transform.localScale.x=ScaleX;
-		transform.position+=Vector3.right*speedForRandomMove*Time.deltaTime;	
+		transform.position+=Vector3.right*speedForRandomMove*EnemyManagement.enemyManagement.enemyFactor*Time.deltaTime;	
 		if(toRight==0)
 		{
 			ifFinished=true;

@@ -108,5 +108,5 @@ function SpawnerWait(ID:int)
 
 function UpdateEnemy()
 {
-	enemyFactor=spawnerDestroyed+0.1*(spawnerDestroyed-1);
+	enemyFactor=1+0.1*(spawnerDestroyed);
 }
