@@ -11,6 +11,7 @@ function FixedUpdate()
 	SetDirection();
 	Move(velocity*Time.deltaTime);
 	SetGravity();
+	
 }
 function Move(deltaMovement:Vector2)
 {
