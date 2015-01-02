@@ -19,11 +19,11 @@ function OnTriggerStay2D(other:Collider2D)
 		{
 			if((other.transform.position.x-transform.position.x)>0)
 			{
-				other.GetComponent(PlayerControl).Damage(enemyStatus.ATK,Vector2(1,1));
+				other.GetComponent(PlayerControl).Damage(enemyStatus.ATK+EnemyManagement.enemyManagement.enemyAttackFactor,Vector2(1,1));
 			}
 			else
 			{
-			  	other.GetComponent(PlayerControl).Damage(enemyStatus.ATK,Vector2(-1,1));
+			  	other.GetComponent(PlayerControl).Damage(enemyStatus.ATK+EnemyManagement.enemyManagement.enemyAttackFactor,Vector2(-1,1));
 			}
 			other.GetComponent(PlayerControl).Damage(enemyStatus.ATK,Vector2(1,1));
 			attackable=false;

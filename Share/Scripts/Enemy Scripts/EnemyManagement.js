@@ -4,7 +4,8 @@ var spawnerList : List.<GameObject>;
 var spawnerLocation:Transform[];
 var isVacant:boolean[];
 
-var enemyFactor:float;
+var enemyMovementFactor:float;
+var enemyAttackFactor:int;
 var spawnRate:float;
 var enemyNumber:int;
 var weaponPanel:GameObject;
@@ -17,7 +18,8 @@ function Awake()
 }
 function Start()
 {
-	enemyFactor=1;
+	enemyAttackFactor=0;
+	enemyMovementFactor=1;
 	isVacant=new boolean[spawnerLocation.length];
 	callLock=-1;
 	enemyNumber=0;
@@ -109,4 +111,5 @@ function SpawnerWait(ID:int)
 function UpdateEnemy()
 {
 	enemyFactor=1+0.1*(spawnerDestroyed);
+	enemyAttackFactor=spawnerDestroyed;
 }
