@@ -31,9 +31,12 @@ function OnTriggerEnter2D(other:Collider2D)
 	}
 	if(other.tag=="EnemySpawner")
 	{
-		Instantiate(explodingParticle,transform.position,transform.rotation);
-		other.GetComponent(EnemySpawnerDamage).Damage(ATK);
-		DestroyFire();
+		if(other.GetComponent(EnemySpawnerDamage).duration!=0)	
+		{
+			Instantiate(explodingParticle,transform.position,transform.rotation);
+			other.GetComponent(EnemySpawnerDamage).Damage(ATK);
+			DestroyFire();
+		}
 	}
 } 
 function FixedUpdate()
