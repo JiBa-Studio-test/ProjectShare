@@ -2,6 +2,7 @@
 var fullDuration:int;
 var ID:int;
 var location:int;
+var bonus:int;
 
 var spriteRenderer: SpriteRenderer;
 
@@ -117,6 +118,7 @@ function Broken()
 			DropingMaterials();
 			//EnemyManagement.enemyManagement.spawnerList.Remove(this.gameObject);
 			EnemyManagement.enemyManagement.spawnerDestroyed++;	
+			GameManagement.gameManagement.AddPoints(bonus);
 			isBroken=true;
 			EnemyManagement.enemyManagement.ClearSpawner(location);
 			location=-1;
@@ -142,6 +144,7 @@ function Reset()
 	fullDuration=50;
 	isBroken=false;
 	warningColorLock=true;
+	GetComponent(EnemySpawner).spawn=true;
 }
 //
 function RespawnFlash()
