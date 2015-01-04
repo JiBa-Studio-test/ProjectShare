@@ -12,6 +12,10 @@ function Start()
 }
 function FixedUpdate()
 {
+	if(!_AI_monster2.enemyAction.detector.playerDetected)
+	{
+		_AI_monster2.attackLock=true;
+	}
 	if(timeOver&&(!_AI_monster2.attackLock)&&(!enemyStatus.isDead))
 	{
 		Spawn();
