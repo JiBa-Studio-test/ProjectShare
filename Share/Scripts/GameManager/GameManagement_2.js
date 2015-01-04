@@ -34,13 +34,13 @@ function GetPoints()//resort the points for ranking after death
 
 function Restart()
 {
-	Application.LoadLevel(0);
+	Application.LoadLevel(1);
 	Time.timeScale=1;
 }
 
 function MainMenu()
 {
-	Application.LoadLevel(1);
+	Application.LoadLevel(0);
 	Time.timeScale=1;
 
 }

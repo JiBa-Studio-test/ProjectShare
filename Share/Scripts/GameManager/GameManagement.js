@@ -119,14 +119,14 @@ function PauseOrResume()
 function Restart()
 {
 	GameManagement.gameManagement.Reset();
-	Application.LoadLevel(0);
+	Application.LoadLevel(1);
 	Time.timeScale=1;
 }
 
 function MainMenu()
 {
 	GameManagement.gameManagement.Reset();
-	Application.LoadLevel(1);
+	Application.LoadLevel(0);
 	Time.timeScale=1;
 
 }
@@ -155,8 +155,8 @@ function RankingColor()
 {
 	if(rankingNO!=0)
 	{
-		allRankings[rankingNO-1].GetComponent("UILabel").renderer.material.color=Color.red;
-		allRankings[rankingNO-1].transform.parent.GetComponent("UILabel").renderer.material.color=Color.red;
+		allRankings[rankingNO-1].GetComponent(UILabel).color=Color.red;
+		allRankings[rankingNO-1].transform.parent.GetComponent(UILabel).color=Color.red;
 	}
 }
 

@@ -72,7 +72,7 @@ function CallPanel()
 			if((spawnerDestroyed)%5==0&&(spawnerDestroyed!=0))
 			{
 				callLock=spawnerDestroyed;
-				weaponPanel.transform.localPosition=Vector2(160,-50);
+				weaponPanel.transform.localPosition=Vector2(531.65,-150.1);
 				GameManagement.gameManagement.PauseOrResume();
 			}
 		}
