@@ -1,6 +1,6 @@
 ﻿var damageText:GameObject;
 var enemyStatus:EnemyStatus;
-var CurrentHP:int;
+var currentHP:int;
 var LastHP:int;
 function Start()
 {

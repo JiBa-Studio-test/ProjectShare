@@ -20,7 +20,7 @@ function Start()
 			}
 		}
 	}
-	gameManagement=this;
+	gameManagement_2=this;
 	rankings = [10000,8000,7000,6000,5000,4000,3000,2000,1000,1];
 }
 

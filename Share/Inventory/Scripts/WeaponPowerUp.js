@@ -17,7 +17,7 @@ var cost:int;
 function Start()
 {
  	levelList=new List.<GameObject>();
- 	LevelUpBlock=false;
+ 	levelUpBlock=false;
  	ItemCell=GameObject.FindGameObjectWithTag("ItemCell");
 	for(var child:Transform in ItemCell.transform)//scan all childern
 	{

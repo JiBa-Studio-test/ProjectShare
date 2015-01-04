@@ -155,8 +155,8 @@ function RankingColor()
 {
 	if(rankingNO!=0)
 	{
-		allRankings[rankingNO-1].GetComponent("UILabel").color=Color.red;
-		allRankings[rankingNO-1].transform.parent.GetComponent("UILabel").color=Color.red;
+		allRankings[rankingNO-1].GetComponent("UILabel").renderer.material.color=Color.red;
+		allRankings[rankingNO-1].transform.parent.GetComponent("UILabel").renderer.material.color=Color.red;
 	}
 }
 

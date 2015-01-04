@@ -37,14 +37,15 @@ function OnTriggerEnter2D(other:Collider2D)
 	
 	if(other.tag=="Player")
 	{
+		var playerControl = other.gameObject.GetComponent("PlayerControl") as PlayerControl;
 		if((other.transform.position.x-transform.position.x)>0)
 		{
-			other.GetComponent("PlayerControl").Damage(5+EnemyManagement.enemyManagement.enemyAttackFactor,Vector2(1,0));
+			playerControl.Damage((5+EnemyManagement.enemyManagement.enemyAttackFactor),Vector2(1,0));
 			Destroy(gameObject);
 		}
 		else
 		{
-			other.GetComponent("PlayerControl").Damage(5+EnemyManagement.enemyManagement.enemyAttackFactor,Vector2(-1,0));
+			playerControl.Damage((5+EnemyManagement.enemyManagement.enemyAttackFactor),Vector2(-1,0));
 			Destroy(gameObject);
 		
 		}

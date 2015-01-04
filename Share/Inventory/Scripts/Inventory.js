@@ -30,7 +30,7 @@
  {
  	for(var objects: GameObject in inventoryList)
  	{
- 		objects.GetComponentInChlidren(UILabel).text=objects.GetComponent(ItemDataBase).item.amount+" ";
+ 		objects.GetComponentInChildren(UILabel).text=objects.GetComponent(ItemDataBase).item.amount+" ";
  	}
  	GetComponent(UIGrid).Reposition();
  }
