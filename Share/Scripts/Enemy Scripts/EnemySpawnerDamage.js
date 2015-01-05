@@ -11,6 +11,7 @@ var isBroken:boolean;
 var damageFlash:int;
 var attackable:boolean;
 
+var spawnerCount:SpawnerCount;
 var fireParticle:GameObject;
 var brokenParticle:GameObject;
 var brokenTube:GameObject;
@@ -113,13 +114,19 @@ function Broken()
 		if(!cloneBrokenParticle.GetComponent(ParticleSystem).isPlaying)
 		{
 			Destroy(cloneBrokenParticle);
-			gameObject.SetActive(false);
 			//Instantiate(brokenTube,transform.position,transform.rotation);
 			DropingMaterials();
 			//EnemyManagement.enemyManagement.spawnerList.Remove(this.gameObject);
-			EnemyManagement.enemyManagement.spawnerDestroyed++;	
+			EnemyManagement.enemyManagement.spawnerDestroyed++;
+			//to check if the weapon panel shall be called
+			if(((EnemyManagement.enemyManagement.spawnerDestroyed)%EnemyManagement.enemyManagement.requiredSpawners==0)&&(EnemyManagement.enemyManagement.spawnerDestroyed!=0))
+			{
+				EnemyManagement.enemyManagement.WaitWeaponPanel();
+			}
+			spawnerCount.SetSpawnerText();
 			GameManagement.gameManagement.AddPoints(bonus);
 			isBroken=true;
+			gameObject.SetActive(false);
 			EnemyManagement.enemyManagement.ClearSpawner(location);
 			location=-1;
 			Reset();

@@ -2,8 +2,13 @@
 var spawn: boolean;
 var minWaitTime: float;
 var waitTime:float;
+var maxEnemy:int;
 function Start()
 {
+	
+	if(maxEnemy == 0){
+		maxEnemy = 10;
+	}
 	if(minWaitTime == 0){
 		minWaitTime = 5;
 	}
@@ -12,7 +17,7 @@ function Start()
 
 function FixedUpdate()
 {
-	if(spawn)
+	if(spawn&&EnemyManagement.enemyManagement.enemyNumber<=maxEnemy)
 	{
 		Spawn();	
 	}

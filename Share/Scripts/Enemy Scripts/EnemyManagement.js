@@ -3,6 +3,8 @@ static var enemyManagement: EnemyManagement;
 var spawnerList : List.<GameObject>;
 var spawnerLocation:Transform[];
 var isVacant:boolean[];
+var requiredSpawners:int;
+var playerStatus:PlayerStatus;
 
 var enemyMovementFactor:float;
 var enemyAttackFactor:int;
@@ -11,7 +13,6 @@ var enemyNumber:int;
 var weaponPanel:GameObject;
 
 var spawnerDestroyed:int;
-var callLock:int;
 function Awake()
 {
 	enemyManagement=this;
@@ -21,11 +22,15 @@ function Start()
 	enemyAttackFactor=0;
 	enemyMovementFactor=1;
 	isVacant=new boolean[spawnerLocation.length];
-	callLock=-1;
 	enemyNumber=0;
 	spawnerDestroyed=0;
 	SetSpawnRate();
 	spawnerList=new List.<GameObject>();
+	playerStatus=GameObject.FindGameObjectWithTag("Player").GetComponent(PlayerStatus);
+	if(requiredSpawners==0)
+	{
+		requiredSpawners=4;
+	}
 	for(var child1:Transform in transform)//scan all childern
 	{
 		if(child1.gameObject.name=="Spawners")
@@ -50,7 +55,6 @@ function Start()
 function FixedUpdate()
 {
 	SetSpawnRate();
-	CallPanel();
 	UpdateEnemy();
 }
 function SetSpawnRate()
@@ -63,19 +67,6 @@ function SetSpawnRate()
 	{
 		spawnRate=1.0*Mathf.Pow(0.6,(enemyNumber-5)/2);
 	}
-}
-
-function CallPanel()
-{
-		if(callLock!=spawnerDestroyed)
-		{
-			if((spawnerDestroyed)%5==0&&(spawnerDestroyed!=0))
-			{
-				callLock=spawnerDestroyed;
-				weaponPanel.transform.localPosition=Vector2(531.65,-150.1);
-				GameManagement.gameManagement.PauseOrResume();
-			}
-		}
 }
 
 function RemovePanel()
@@ -112,4 +103,19 @@ function UpdateEnemy()
 {
 	enemyMovementFactor=1+0.1*(spawnerDestroyed);
 	enemyAttackFactor=spawnerDestroyed;
+}
+
+function WaitWeaponPanel()
+{
+	CallPanel();
+} 
+function CallPanel()
+{
+	yield WaitForSeconds(2.0);
+ 	if(!playerStatus.isDead)
+	{
+		weaponPanel.transform.localPosition=Vector2(531.65,-150.1);
+		GameManagement.gameManagement.PauseOrResume();
+	}
+	
 }

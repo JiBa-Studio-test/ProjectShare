@@ -38,6 +38,12 @@ function OnTriggerEnter2D(other:Collider2D)
 			DestroyFire();
 		}
 	}
+	if(other.tag=="Wall")
+	{
+		Instantiate(explodingParticle,transform.position,transform.rotation);
+		DestroyFire();
+	}
+	
 } 
 function FixedUpdate()
 {

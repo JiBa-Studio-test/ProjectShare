@@ -7,12 +7,11 @@ function Start()
 {
 	currentCount=EnemyManagement.enemyManagement.spawnerDestroyed;
 	GetComponent(UILabel);
-	label.text="Spawner: "+"0";
+	label.text="Spawner: "+"0"+"/"+EnemyManagement.enemyManagement.requiredSpawners;
 }
-function FixedUpdate() 
+function SetSpawnerText() 
 {
-		
-		label.text="Spawner: "+EnemyManagement.enemyManagement.spawnerDestroyed.ToString();
+		label.text="Spawner: "+EnemyManagement.enemyManagement.spawnerDestroyed.ToString()+"/"+((EnemyManagement.enemyManagement.spawnerDestroyed/EnemyManagement.enemyManagement.requiredSpawners+1)*EnemyManagement.enemyManagement.requiredSpawners).ToString();
 		if(currentCount!=EnemyManagement.enemyManagement.spawnerDestroyed)
 		{
 			Active();

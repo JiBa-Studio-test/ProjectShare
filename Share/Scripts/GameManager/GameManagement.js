@@ -8,6 +8,7 @@ var pauseButton:GameObject;
 var rankingPanel:GameObject;
 var UI:GameObject;
 var buttonSound: AudioSource;
+var bgm:AudioSource;
 
 var allRankings: List.<GameObject>;
 var rankings : int[] = new int[10];
@@ -106,6 +107,7 @@ function PauseOrResume()
 		GameStatus.Game.gamePause=false;
 		pauseButton.SetActive(true);
 		easyTouch.SetActive(true);
+		bgm.Play();
 	}
 	else
 	{
@@ -113,6 +115,7 @@ function PauseOrResume()
 		GameStatus.Game.gamePause=true;
 		pauseButton.SetActive(false);
 		easyTouch.SetActive(false);
+		bgm.Pause();
 	}	
 }
 

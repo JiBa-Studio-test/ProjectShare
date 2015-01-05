@@ -60,6 +60,7 @@ function AddItem()
 	ItemCell.GetComponent(ItemDataBase).item.amount++;
 	GameManagement.gameManagement.AddCrystalNum(1);
 	Refresh();
+	GameManagement.gameManagement.PlaySound();
 	Destroy(gameObject);
 }
 
